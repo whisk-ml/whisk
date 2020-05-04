@@ -109,3 +109,6 @@ ENV/
 
 # Private notes
 TODO.md
+
+# pytest results
+test_results

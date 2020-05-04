@@ -4,6 +4,7 @@ import pytest
 import shutil
 from pathlib import Path
 from cookiecutter import main
+import whisk
 from whisk.whisk import cookiecutter_template_dir
 
 args = {
