@@ -40,7 +40,7 @@ def test_command_line_interface():
     assert '--help  Show this message and exit.' in help_result.output
 
 def test_create(tmpdir):
-    temp = tmpdir.mkdir('data-project')
+    temp = tmpdir.mkdir('whisk-project')
     project_name = "project_name"
     out_dir = Path(temp).resolve()
     whisk.create(project_name, output_dir=out_dir, setup=False)
