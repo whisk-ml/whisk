@@ -6,8 +6,8 @@ jobs:
         - image: themattrix/tox
       steps:
         - checkout
-        - run: sudo apt-get -y update
-        - run: sudo apt-get -y install ipython
+        - run: apt-get -y update
+        - run: apt-get -y install ipython
         - run: python -m venv venv
         - run: venv/bin/pip install jupyter
         - run: venv/bin/pip install -r requirements_dev.txt
