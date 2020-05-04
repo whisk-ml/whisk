@@ -9,7 +9,9 @@ jobs:
         - run: python -m venv venv
         - run: venv/bin/pip install -r requirements_dev.txt
         - run: echo "source /root/project/venv/bin/activate" >> $BASH_ENV
-        - run: python setup.py bdist_wheel
+        - run: python setup.py sdist bdist_wheel
+        - store_artifacts:
+            path: dist
   test:
       docker:
         - image: themattrix/tox
