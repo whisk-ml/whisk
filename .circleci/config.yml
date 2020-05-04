@@ -1,6 +1,15 @@
 # Based on https://qxf2.com/blog/tox-with-circleci/
 version: 2
 jobs:
+  build:
+      docker:
+        - image: circleci/python:3.7
+      steps:
+        - checkout
+        - run: python -m venv venv
+        - run: venv/bin/pip install -r requirements_dev.txt
+        - run: echo "source /root/project/venv/bin/activate" >> $BASH_ENV
+        - run: python setup.py bdist_wheel
   test:
       docker:
         - image: themattrix/tox
@@ -24,3 +33,6 @@ workflows:
   tests:
     jobs:
       - test
+  build:
+    jobs:
+      - build
