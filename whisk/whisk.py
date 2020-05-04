@@ -1,14 +1,24 @@
 """Main module."""
 
 from cookiecutter.main import cookiecutter
+from os.path import dirname, realpath
+from pathlib import Path
+
+def root_module_dir():
+    """
+    Returns a Path object with the root whisk module directory.
+    """
+    filepath = realpath(__file__)
+    return Path(filepath).parents[0]
 
 def create(project_name, output_dir=".", setup=None):
-    print("creating=",project_name)
+    """
+    Creates a whisk project.
+    """
     extra_content = {"project_name": project_name}
     if setup is not None:
         extra_content["setup"] = setup
-    print("extra_content",extra_content)
-    cookiecutter('/Users/dlite/projects/whisk/whisk/template/',
+    cookiecutter(str(root_module_dir() / 'template/'),
                 no_input=True,
                 output_dir=output_dir,
                 extra_context=extra_content)
