@@ -1,0 +1,7 @@
+# local package
+-e .
+
+# Core Project Requirements
+-r core/requirements.txt
+
+### Add project-specific requirements below.

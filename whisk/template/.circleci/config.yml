@@ -1,0 +1,24 @@
+# Based on https://qxf2.com/blog/tox-with-circleci/
+version: 2
+jobs:
+  test:
+      docker:
+        - image: themattrix/tox
+      steps:
+        - checkout
+        # - run: sudo apt-get -y install ipython
+        - run: python -m venv venv
+        - run: venv/bin/pip install jupyter
+        - run: venv/bin/pip install -r requirements.txt
+        - run: echo "source /root/project/venv/bin/activate" >> $BASH_ENV
+        # - run: pytest -s --junitxml=test_results/pytest/pytest-report.xml
+        - run: tox -p all -q
+        - store_test_results:
+            path: test_results
+        - store_artifacts:
+            path: test_results
+workflows:
+  version: 2
+  tests:
+    jobs:
+      - test

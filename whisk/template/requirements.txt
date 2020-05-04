@@ -1,0 +1,5 @@
+mkdocs
+mkdocs-cinder
+cookiecutter
+pytest
+tox
