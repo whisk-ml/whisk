@@ -4,8 +4,7 @@ import pytest
 import shutil
 from pathlib import Path
 from cookiecutter import main
-
-CCDS_ROOT = Path(__file__).parents[1].resolve()
+from whisk.whisk import cookiecutter_template_dir
 
 args = {
         'project_name': 'project_name',
@@ -31,7 +30,7 @@ def default_baked_project(tmpdir_factory, request):
     pytest.param = request.param
 
     main.cookiecutter(
-        str(CCDS_ROOT),
+        cookiecutter_template_dir(),
         no_input=True,
         extra_context=pytest.param,
         output_dir=out_dir

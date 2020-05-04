@@ -2,7 +2,7 @@ import os
 import pytest
 import datetime as dt
 from subprocess import check_output, CalledProcessError
-from conftest import system_check
+from tests.conftest import system_check
 
 
 def no_curlies(filepath):

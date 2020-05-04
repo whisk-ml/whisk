@@ -11,6 +11,9 @@ def root_module_dir():
     filepath = realpath(__file__)
     return Path(filepath).parents[0]
 
+def cookiecutter_template_dir():
+    return str(root_module_dir() / 'template/')
+
 def create(project_name, output_dir=".", setup=None):
     """
     Creates a whisk project.
@@ -18,7 +21,7 @@ def create(project_name, output_dir=".", setup=None):
     extra_content = {"project_name": project_name}
     if setup is not None:
         extra_content["setup"] = setup
-    cookiecutter(str(root_module_dir() / 'template/'),
+    cookiecutter(cookiecutter_template_dir(),
                 no_input=True,
                 output_dir=output_dir,
                 extra_context=extra_content)
