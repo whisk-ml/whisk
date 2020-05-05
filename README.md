@@ -28,6 +28,10 @@ curl --location --request POST 'http://localhost:5000/predict' \
 --header 'Content-Type: application/json' \
 --data-raw '{"data":[[0, 1], [2, 3]]}'
 
+# Deploy your web service to Heroku
+whisk app create demo-[INSERT YOUR NAME]
+
+
 # Easily package your trained model to distribute to the world
 whisk model build
 pip install dist/demo-0.1.0.tar.gz
