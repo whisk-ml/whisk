@@ -12,6 +12,26 @@ jobs:
         - run: python setup.py sdist bdist_wheel
         - store_artifacts:
             path: dist
+  deploy:
+      docker:
+        - image: circleci/python:3.7
+      steps:
+        - checkout
+        - run: python -m venv venv
+        - run: venv/bin/pip install -r requirements_dev.txt
+        - run: echo "source /root/project/venv/bin/activate" >> $BASH_ENV
+        - run: python setup.py sdist bdist_wheel
+        - run:
+          name: init .pypirc
+          command: |
+            echo -e "[pypi]" >> ~/.pypirc
+            echo -e "username = $PYPI_USERNAME" >> ~/.pypirc
+            echo -e "password = $PYPI_PASSWORD" >> ~/.pypirc
+        - run:
+          name: upload to pypi
+          command: twine upload dist/*
+        - store_artifacts:
+            path: dist
   test:
       docker:
         - image: themattrix/tox
@@ -38,3 +58,20 @@ workflows:
   build:
     jobs:
       - build
+  build_and_deploy:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /.*/
+      - test
+          requires:
+            - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*/
+            branches:
+              ignore: /.*/
