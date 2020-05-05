@@ -1,16 +1,18 @@
 """Console script for whisk."""
 import sys
 import click
+from whisk import whisk
 
+@click.group()
+def main():
+    pass
 
-@click.command()
-def main(args=None):
-    """Console script for whisk."""
-    click.echo("Replace this message by putting your code into "
-               "whisk.cli.main")
-    click.echo("See click documentation at https://click.palletsprojects.com/")
-    return 0
-
+@main.command()
+@click.argument('name')
+@click.option('--setup/--no-setup', default=True, help="Run setup script after creating directory structure.")
+def create(name, setup):
+    """Creates a Whisk project in the NAME directory."""
+    whisk.create(name, setup=setup)
 
 if __name__ == "__main__":
-    sys.exit(main())  # pragma: no cover
+    main()

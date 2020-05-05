@@ -4,7 +4,9 @@
 
 import pytest
 import shutil
+import os
 
+# https://click.palletsprojects.com/en/7.x/testing/
 from click.testing import CliRunner
 
 from whisk import whisk
@@ -29,15 +31,22 @@ def test_content(response):
     # assert 'GitHub' in BeautifulSoup(response.content).title.string
 
 
-def test_command_line_interface():
+def test_cli():
     """Test the CLI."""
     runner = CliRunner()
     result = runner.invoke(cli.main)
     assert result.exit_code == 0
-    assert 'whisk.cli.main' in result.output
     help_result = runner.invoke(cli.main, ['--help'])
     assert help_result.exit_code == 0
-    assert '--help  Show this message and exit.' in help_result.output
+
+def test_create_via_cli():
+    """Test creating an app via the CLI."""
+    project_name = "project_name_cli"
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        result = runner.invoke(cli.create,[project_name, '--no-setup'])
+        assert result.exit_code == 0
+        assert os.path.exists((Path(os.getcwd()) / project_name))
 
 def test_create(tmpdir):
     temp = tmpdir.mkdir('whisk-project')

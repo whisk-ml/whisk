@@ -4,6 +4,13 @@
 
 [![docs](https://readthedocs.org/projects/whisk/badge/?version=latest)](https://whisk.readthedocs.io/en/latest/?badge=latest)
 
+## Quickstart
+
+```
+pip install whisk
+whisk create [DIRECTORY NAME FOR YOUR PROJECT]
+```
+
 ## Beliefs
 
 * _A notebook isn't enough_ - A data science notebook is where experimentation starts, but you can't create a reproducible, collaborative ML project with just a `*.ipynb` file.

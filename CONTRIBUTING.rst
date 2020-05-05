@@ -113,6 +113,16 @@ To run a subset of tests::
 
 $ pytest tests/test_whisk.py
 
+Testing the package vs. the source code
+---------------------------------------
+
+When running `python setup.py develop`, the package is installed (via pip install -e, I think). This means tests run against
+the local source code.
+
+To test the generated package, you must first uninstall the `whisk` package, then run tox.
+
+Background: https://github.com/tox-dev/tox/issues/514#issuecomment-327779367
+
 
 Deploying
 ---------
