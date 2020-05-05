@@ -12,7 +12,7 @@ Read more about our [beliefs](#beliefs).
 
 ## Quickstart
 
-Replace `demo` with the name of your ML project in the examples below.
+_Replace `demo` with the name of your ML project in the examples below._
 
 Create the project:
 
@@ -26,7 +26,7 @@ cd demo
 There's a placeholder model you can invoke immediately from the command line:
 
 ```
-demo predict [[0,1],[2,3]]
+whisk predict [[0,1],[2,3]]
 ```
 
 ...and a ready-to-go Flask web service:
