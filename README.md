@@ -1,14 +1,43 @@
-# Whisk Machine Learning Project Framework
+# Whisk ML Project Framework
 
 [![pypi](https://img.shields.io/pypi/v/whisk.svg)](https://pypi.python.org/pypi/whisk)
 
 [![docs](https://readthedocs.org/projects/whisk/badge/?version=latest)](https://whisk.readthedocs.io/en/latest/?badge=latest)
 
+Tying together the tools required to release a machine learning model can be daunting. Whisk makes building and releasing ML models easy and fun. Whisk creates a logical and flexible project structure for ML that creates reproducible results and lets you release your model to the world without becoming a software engineer.
+
+Whisk doesn't lock you into a particular ML framework or require you to learn yet another ML packaging API. Instead, it leverages the magic of Python's ecosystem that's available to projects structured in a Pythonic-way. Whisk does the structuring while you focus on the data science.
+
+Read more about our [beliefs](#beliefs).
+
 ## Quickstart
+
+Replace `demo` with the name of your ML project.
 
 ```
 pip install whisk
-whisk create [DIRECTORY NAME FOR YOUR PROJECT]
+whisk create demo
+cd demo
+
+# There's a placeholder model you can invoke immediately from the command line
+demo predict [[0,1],[2,3]]
+
+# And a web service too
+whisk app start
+curl --location --request POST 'http://localhost:5000/predict' \
+--header 'Content-Type: application/json' \
+--data-raw '{"data":[[0, 1], [2, 3]]}'
+
+# Easily package your trained model to distribute to the world
+whisk model build
+pip install dist/demo-0.1.0.tar.gz
+
+## invoke your model via a CLI...
+demo predict [[0,1],[2,3]]
+
+## ...and within Python code
+from demo import model
+model.predict([[0,1],[2,3]])
 ```
 
 ## Beliefs
@@ -22,4 +51,4 @@ whisk create [DIRECTORY NAME FOR YOUR PROJECT]
 
 ## Credits
 
-This package was created with Cookiecutter and the `audreyr/cookiecutter-pypackage` project template.
+This package was created with Cookiecutter and the `audreyr/cookiecutter-pypackage` project template. The project template is heavily inspired by [Cookiecutter Data Science](https://github.com/drivendata/cookiecutter-data-science).
