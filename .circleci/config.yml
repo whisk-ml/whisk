@@ -64,7 +64,7 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - test
+      - test:
           requires:
             - build
       - deploy:
