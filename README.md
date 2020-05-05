@@ -16,6 +16,7 @@ Replace `demo` with the name of your ML project.
 
 ```
 pip install whisk
+# Generate the directory structure, set up a venv, initialize a Git repo, and more.
 whisk create demo
 cd demo
 
@@ -31,8 +32,7 @@ curl --location --request POST 'http://localhost:5000/predict' \
 # Deploy your web service to Heroku
 whisk app create demo-[INSERT YOUR NAME]
 
-
-# Easily package your trained model to distribute to the world
+# Easily distribute your trained model to the world
 whisk model build
 pip install dist/demo-0.1.0.tar.gz
 
