@@ -8,18 +8,19 @@ jobs:
         - checkout
         - run: python -m venv venv
         - run: venv/bin/pip install -r requirements_dev.txt
-        - run: echo "source /root/project/venv/bin/activate" >> $BASH_ENV
+        - run: echo "source /home/circleci/project/venv/bin/activate" >> $BASH_ENV
         - run: python setup.py sdist bdist_wheel
         - store_artifacts:
             path: dist
   deploy:
+      context: whisk
       docker:
         - image: circleci/python:3.7
       steps:
         - checkout
         - run: python -m venv venv
         - run: venv/bin/pip install -r requirements_dev.txt
-        - run: echo "source /root/project/venv/bin/activate" >> $BASH_ENV
+        - run: echo "source /home/circleci/project/venv/bin/activate" >> $BASH_ENV
         - run: python setup.py sdist bdist_wheel
         - run:
             name: init .pypirc
