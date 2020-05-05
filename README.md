@@ -12,34 +12,55 @@ Read more about our [beliefs](#beliefs).
 
 ## Quickstart
 
-Replace `demo` with the name of your ML project.
+Replace `demo` with the name of your ML project in the examples below.
+
+Create the project:
 
 ```
 pip install whisk
-# Generate the directory structure, set up a venv, initialize a Git repo, and more.
+echo "Generate the directory structure, set up a venv, initialize a Git repo, and more."
 whisk create demo
 cd demo
+```
 
-# There's a placeholder model you can invoke immediately from the command line
+There's a placeholder model you can invoke immediately from the command line:
+
+```
 demo predict [[0,1],[2,3]]
+```
 
-# And a web service too
+...and a ready-to-go Flask web service:
+
+```
 whisk app start
 curl --location --request POST 'http://localhost:5000/predict' \
 --header 'Content-Type: application/json' \
 --data-raw '{"data":[[0, 1], [2, 3]]}'
+```
 
-# Deploy your web service to Heroku
+Deploy the web service to Heroku (a free account is fine to get started):
+
+```
 whisk app create demo-[INSERT YOUR NAME]
+```
 
-# Easily distribute your trained model to the world
+Create a Python package containing your model and share with the world:
+
+```
 whisk model build
+echo "Installing the generated Python package"
 pip install dist/demo-0.1.0.tar.gz
+```
 
-## invoke your model via a CLI...
+Invoke the model via the CLI:
+
+```
 demo predict [[0,1],[2,3]]
+```
 
-## ...and within Python code
+...and within Python code:
+
+```py
 from demo import model
 model.predict([[0,1],[2,3]])
 ```
