@@ -21,6 +21,7 @@ pip install whisk
 echo "Generate the directory structure, set up a venv, initialize a Git repo, and more."
 whisk create demo
 cd demo
+source venv/bin/activate
 ```
 
 Checkout the end-to-end notebook example:
