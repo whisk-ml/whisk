@@ -4,9 +4,9 @@
 
 The following is required to run this project:
 
-* Git
+* Git (configured with a [user name and email](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup))
 * Python 3.6+
-* A Linux-based OS
+* A Linux-based OS (includes OSX)
 
 ## Setup
 
