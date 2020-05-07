@@ -1,6 +1,5 @@
 # Requirements for the core cookiecutter template.
 /Users/dlite/projects/whisk/dist/whisk-0.1.8.tar.gz
-coverage
 ipykernel
 python-dotenv
 dvc
