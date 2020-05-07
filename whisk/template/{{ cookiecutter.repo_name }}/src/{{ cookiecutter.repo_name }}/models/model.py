@@ -11,7 +11,7 @@ class DummyModel:
     def predict(self,X):
         return list(map(lambda instance: len(instance), X))
 
-class ModelWrapper:
+class Model:
     """
     This class should be used to load and invoke the serialized model and any other required
     model artifacts for pre/post-processing.

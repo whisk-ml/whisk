@@ -30,6 +30,11 @@ def set_nbenv(arguments):
             nbenv = current_value
     return nbenv
 
+# A similar function is in utils, but pip install -e . hasn't been executed yet so it isn't available.
+def has_unstaged_changes():
+    res=subprocess.check_output("git status --porcelain",shell=True, universal_newlines=True)
+    return ("\n" in res)
+
 def exec(desc,cmd):
     """
     Executes the `cmd`, and prints `desc` prior to execution.
@@ -61,6 +66,10 @@ def exec_setup(nbenv):
     # direnv will fail if not installed
     os.system("cp .envrc.example .envrc")
     os.system("direnv allow . > /dev/null 2>&1")
+    if has_unstaged_changes():
+        exec("Adding files to git", "git add .")
+        # Need to activate environment as the git pre-commit hook calls dvc
+        exec("Making initial Git commit", "source venv/bin/activate ; git commit -m 'Initial project structure' > /dev/null")
 
 def set_example_notebook_kernel(nbenv):
     # Read in the file

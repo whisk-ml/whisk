@@ -23,6 +23,14 @@ whisk create demo
 cd demo
 ```
 
+Checkout the end-to-end notebook example:
+
+```
+jupyter-notebook notebooks/example.ipynb
+```
+
+The notebook shows how to save your trained model to disk, use the saved model to generate predictions, and how to load Python functions and classes from the project's `src` directory for a cleaner notebook. It's the guide rails for your own ML project.
+
 There's a placeholder model you can invoke immediately from the command line:
 
 ```
@@ -38,7 +46,7 @@ curl --location --request POST 'http://localhost:5000/predict' \
 --data-raw '{"data":[[0, 1], [2, 3]]}'
 ```
 
-Deploy the web service to Heroku (a free account is fine to get started):
+Deploy the web service to Heroku (a free account is fine):
 
 ```
 whisk app create demo-[INSERT YOUR NAME]

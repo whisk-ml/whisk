@@ -1,10 +1,23 @@
 from setuptools import find_packages, setup
 
+
+def list_reqs(fname='requirements.txt'):
+    """
+    Adds the packages listed in `fname` as package requirements.
+
+    By default this is the project's main requirements.txt file. To provide
+    a smaller set of packages required only for model predictions, add a
+    `src/requirements.txt` file w/the subset of required packages and load this file instead.
+    """
+    with open(fname) as fd:
+        return fd.read().splitlines()
+
 setup(
-    name='src',
-    packages=find_packages(),
+    name='{{cookiecutter.project_name}}',
+    package_dir={'': 'src'},
+    packages=find_packages(where='src'),
     version='0.1.0',
-    description='{{ cookiecutter.description }}',
-    author='{{ cookiecutter.author_name }}',
-    license='{% if cookiecutter.open_source_license == 'MIT' %}MIT{% elif cookiecutter.open_source_license == 'BSD-3-Clause' %}BSD-3{% endif %}',
+    description='A short description of the project.',
+    author='Your name (or your organization/company/team)',
+    python_requires='>=3.6',
 )

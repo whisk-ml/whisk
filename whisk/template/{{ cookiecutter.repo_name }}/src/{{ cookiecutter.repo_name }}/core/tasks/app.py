@@ -1,6 +1,5 @@
 from invoke import task
-import sys
-import subprocess
+from {{cookiecutter.project_name}}.core.utils import has_unstaged_changes
 
 @task
 def start(c):
@@ -8,10 +7,6 @@ def start(c):
     Start the web service serving model inference.
     """
     c.run("honcho -f app/Procfile.dev start", pty=True)
-
-def has_unstaged_changes():
-    res=subprocess.check_output("git status --porcelain",shell=True, universal_newlines=True)
-    return ("\n" in res)
 
 @task(help={'name': "Name of the Heroku app."})
 def create(c,name):

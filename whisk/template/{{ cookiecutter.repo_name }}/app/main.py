@@ -1,6 +1,6 @@
 import flask
 from core.utils import dvc_pull
-from src.models.model_wrapper import ModelWrapper
+from {{cookiecutter.project_name}}.models.model_wrapper import Model
 import sys
 import os
 
@@ -9,7 +9,7 @@ app = flask.Flask(__name__)
 # Pull the output of the DVC stage used to generate the serialized model when running on a
 # deployed server. For example:
 # dvc_pull("train.dvc")
-model = ModelWrapper()
+model = Model()
 
 @app.route("/predict", methods=["POST"])
 def predict():

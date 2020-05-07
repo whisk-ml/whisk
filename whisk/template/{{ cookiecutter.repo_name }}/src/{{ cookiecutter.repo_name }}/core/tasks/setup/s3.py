@@ -1,6 +1,6 @@
 from invoke import task
 import boto3
-from core.utils import project_dir_name
+from {{cookiecutter.project_name}}.core.utils import project_dir_name
 
 @task(help={'bucket': "The name of the S3 bucket to use. If not provided, this is generated from the project directory name."})
 def create(c, bucket=None):

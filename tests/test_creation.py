@@ -3,6 +3,7 @@ import pytest
 import datetime as dt
 from subprocess import check_output, CalledProcessError
 from conftest import system_check
+from pathlib import Path
 
 
 def no_curlies(filepath):
@@ -37,6 +38,12 @@ def changed_files(root_path,ago):
                 changed_files.append(path)
     return changed_files
 
+def paths_to_relative(root,paths):
+    """
+    Converts a list of absolute paths to paths relative to the the root project path.
+    """
+    return list(map(lambda x: str(Path(x).relative_to(root)), paths))
+
 @pytest.mark.usefixtures("default_baked_project")
 class TestCookieSetup(object):
     def test_project_name(self):
@@ -45,15 +52,6 @@ class TestCookieSetup(object):
             assert project.name == pytest.param.get('project_name')
         else:
             assert project.name == 'project_name'
-
-    def test_author(self):
-        setup_ = self.path / 'setup.py'
-        args = ['python', setup_, '--author']
-        p = check_output(args).decode('ascii').strip()
-        if pytest.param.get('author_name'):
-            assert p == 'DrivenData'
-        else:
-            assert p == 'Your name (or your organization/company/team)'
 
     def test_readme(self):
         readme_path = self.path / 'README.md'
@@ -68,20 +66,6 @@ class TestCookieSetup(object):
         args = ['python', setup_, '--version']
         p = check_output(args).decode('ascii').strip()
         assert p == '0.1.0'
-
-    def test_license(self):
-        license_path = self.path / 'LICENSE'
-        assert license_path.exists()
-        assert no_curlies(license_path)
-
-    def test_license_type(self):
-        setup_ = self.path / 'setup.py'
-        args = ['python', setup_, '--license']
-        p = check_output(args).decode('ascii').strip()
-        if pytest.param.get('open_source_license'):
-            assert p == 'BSD-3'
-        else:
-            assert p == 'MIT'
 
     def test_requirements(self):
         reqs_path = self.path / 'requirements.txt'
@@ -131,26 +115,34 @@ class TestCookieSetup(object):
                      cwd=self.path)
 
     def test_folders(self):
+        project = self.path
+        project_name = project.name
         expected_dirs = [
+            '.whisk',
+            'app',
             'data',
             'data/external',
             'data/interim',
             'data/processed',
             'data/raw',
             'docs',
-            'models',
             'notebooks',
             'references',
             'reports',
             'reports/figures',
+            'scripts',
             'src',
-            'src/data',
-            'src/features',
-            'src/models',
-            'src/visualization',
+            "src/{}".format(project_name),
+            "src/{}/artifacts".format(project_name),
+            "src/{}/data".format(project_name),
+            "src/{}/features".format(project_name),
+            "src/{}/models".format(project_name),
+            "src/{}/visualization".format(project_name),
         ]
 
-        # Running setup is slow, so by default setup=False.
+        # TODO - add src/{}/core
+
+        # venv dir created if setup=True
         if pytest.param.get("setup"):
             expected_dirs.append("venv")
 
@@ -160,4 +152,9 @@ class TestCookieSetup(object):
 
         abs_expected_dirs = [str(self.path / d) for d in expected_dirs]
         abs_dirs, _, _ = list(zip(*os.walk(self.path)))
-        assert len(set(abs_expected_dirs + ignored_dirs) - set(abs_dirs)) == 0
+
+        rel_dirs = paths_to_relative(self.path,abs_dirs)
+        expected_dirs = paths_to_relative(self.path,set(abs_expected_dirs + ignored_dirs))
+
+        missing_dirs = set(expected_dirs) - set(rel_dirs)
+        assert len(missing_dirs)  == 0, "Expected dirs are missing: {}".format(missing_dirs)

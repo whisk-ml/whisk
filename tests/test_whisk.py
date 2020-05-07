@@ -10,7 +10,7 @@ import os
 from click.testing import CliRunner
 
 from whisk import whisk
-from whisk import cli
+from whisk.cli import cli
 from pathlib import Path
 
 

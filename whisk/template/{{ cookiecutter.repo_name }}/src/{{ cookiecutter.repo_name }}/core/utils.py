@@ -33,3 +33,7 @@ def project_dir_name():
     """
     p = Path(project_dir())
     return p.name
+
+def has_unstaged_changes():
+    res=check_output("git status --porcelain",shell=True, universal_newlines=True)
+    return ("\n" in res)

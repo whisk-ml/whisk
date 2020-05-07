@@ -1,6 +1,7 @@
 """Main module."""
 
 from cookiecutter.main import cookiecutter
+import os
 from os.path import dirname, realpath
 from pathlib import Path
 
@@ -10,6 +11,13 @@ def root_module_dir():
     """
     filepath = realpath(__file__)
     return Path(filepath).parents[0]
+
+def in_project():
+    """
+    Returns True if the current working directory is root whisk
+    project directory.
+    """
+    return (Path(os.getcwd()) / ".whisk").is_dir()
 
 def cookiecutter_template_dir():
     return str(root_module_dir() / 'template/')

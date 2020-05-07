@@ -1,0 +1,2 @@
+include src/requirements.txt
+graft src/{{cookiecutter.project_name}}/artifacts/

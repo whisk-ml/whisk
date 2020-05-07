@@ -23,12 +23,16 @@ def system_check(basename):
     return basename
 
 
+# Look into https://docs.pytest.org/en/latest/example/simple.html#request-example
+# for handling command line options like skipping setup.
 @pytest.fixture(scope='class', params=[{}, args])
 def default_baked_project(tmpdir_factory, request):
     temp = tmpdir_factory.mktemp('data-project')
     out_dir = Path(temp).resolve()
 
     pytest.param = request.param
+    # TODO - handle via a command-line option
+    # pytest.param = {"setup": False}
 
     main.cookiecutter(
         cookiecutter_template_dir(),

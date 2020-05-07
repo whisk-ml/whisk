@@ -33,7 +33,7 @@ setup(
     description="Machine Learning Project Framework Generator",
     entry_points={
         'console_scripts': [
-            'whisk=whisk.cli:main',
+            'whisk=whisk.cli.cli:main',
         ],
     },
     install_requires=requirements,

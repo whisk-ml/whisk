@@ -2,6 +2,6 @@
 -e .
 
 # Core Project Requirements
--r core/requirements.txt
+-r src/{{cookiecutter.project_name}}/core/requirements.txt
 
 ### Add project-specific requirements below.
