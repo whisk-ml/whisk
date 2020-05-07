@@ -22,7 +22,7 @@ def in_project():
 def cookiecutter_template_dir():
     return str(root_module_dir() / 'template/')
 
-def create(project_name, output_dir=".", setup=None):
+def create(project_name, output_dir=".", setup=None, force=False):
     """
     Creates a whisk project.
     """
@@ -31,5 +31,6 @@ def create(project_name, output_dir=".", setup=None):
         extra_content["setup"] = setup
     cookiecutter(cookiecutter_template_dir(),
                 no_input=True,
+                overwrite_if_exists=force,
                 output_dir=output_dir,
                 extra_context=extra_content)

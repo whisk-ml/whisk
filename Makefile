@@ -88,3 +88,9 @@ dist: clean ## builds source and wheel package
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
+
+create-demo:
+	whisk create -o ~/projects/whisk_examples/ --force demo
+	cd ~/projects/whisk_examples/demo
+	~/projects/whisk_examples/demo/venv/bin/pip uninstall -y whisk
+	~/projects/whisk_examples/demo/venv/bin/pip install -e ~/projects/whisk
