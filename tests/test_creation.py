@@ -140,8 +140,6 @@ class TestCookieSetup(object):
             "src/{}/visualization".format(project_name),
         ]
 
-        # TODO - add src/{}/core
-
         # venv dir created if setup=True
         if pytest.param.get("setup"):
             expected_dirs.append("venv")
