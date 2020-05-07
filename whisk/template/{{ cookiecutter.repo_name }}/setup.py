@@ -17,6 +17,11 @@ setup(
     package_dir={'': 'src'},
     packages=find_packages(where='src'),
     version='0.1.0',
+    entry_points={
+        'console_scripts': [
+            '{{cookiecutter.project_name}}={{cookiecutter.project_name}}.cli.main:cli',
+        ],
+    },
     description='A short description of the project.',
     author='Your name (or your organization/company/team)',
     python_requires='>=3.6',
