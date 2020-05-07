@@ -16,13 +16,12 @@ class BasicTests(unittest.TestCase):
         pass
 
     def test_predict(self):
-        pass
-        # The code below is commented out as it will likely fail when a real model
+        # The code below will likely fail when a real model
         # is provided. It should pass on a fresh app.
-        # response = self.app.post('/predict',
-        #                         data=json.dumps({"data": [[1]]}),
-        #                         content_type='application/json')
-        # self.assertEqual(response.status_code, 200)
+        response = self.app.post('/predict',
+                                data=json.dumps({"data": [[1]]}),
+                                content_type='application/json')
+        self.assertEqual(response.status_code, 200)
 
 if __name__ == "__main__":
     unittest.main()

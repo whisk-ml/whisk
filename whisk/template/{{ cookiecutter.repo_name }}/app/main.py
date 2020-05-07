@@ -1,6 +1,6 @@
 import flask
-from core.utils import dvc_pull
-from {{cookiecutter.project_name}}.models.model_wrapper import Model
+from {{cookiecutter.project_name}}.core.utils import dvc_pull
+from {{cookiecutter.project_name}}.models.model import Model
 import sys
 import os
 
