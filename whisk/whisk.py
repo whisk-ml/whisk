@@ -1,5 +1,5 @@
 """Main module."""
-
+import whisk
 from cookiecutter.main import cookiecutter
 import os
 from os.path import dirname, realpath
@@ -21,7 +21,10 @@ def create(project_name, output_dir=".", setup=None, force=False):
     """
     Creates a whisk project.
     """
-    extra_content = {"project_name": project_name}
+    extra_content = {
+        "project_name": project_name,
+        "whisk_dependency": "whisk>={}".format(whisk.__version__)
+    }
     if setup is not None:
         extra_content["setup"] = setup
     cookiecutter(cookiecutter_template_dir(),
