@@ -69,7 +69,7 @@ def exec_setup(nbenv):
     os.system("direnv allow . > /dev/null 2>&1")
     if has_unstaged_changes():
         exec("Adding files to git", "git add .")
-        exec("Making initial Git commit", "git commit -m 'Initial project structure' > /dev/null")
+        exec("Making initial Git commit", "git commit -m 'Initial project structure' --author=\"Whisk <whisk@whisk-ml.org>\" > /dev/null")
 
 def set_example_notebook_kernel(nbenv):
     # Read in the file
