@@ -4,4 +4,19 @@
 # Core Project Requirements
 -r src/{{cookiecutter.project_name}}/core/requirements.txt
 
+# Some sensible default dependencies to get started.
+cloudpickle
+ipython
+jupyter
+matplotlib
+numpy
+pandas
+plotly
+requests
+seaborn
+scikit-learn
+scipy
+simplejson
+sqlalchemy
+
 ### Add project-specific requirements below.

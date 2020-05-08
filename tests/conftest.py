@@ -34,6 +34,10 @@ def default_baked_project(tmpdir_factory, request):
     # TODO - handle via a command-line option
     # pytest.param = {"setup": False}
 
+    pytest.param = {
+        "whisk_dependency": "-e {}".format(os.getcwd())
+    }
+
     main.cookiecutter(
         cookiecutter_template_dir(),
         no_input=True,

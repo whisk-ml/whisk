@@ -13,12 +13,9 @@ def load_project_commands(click_group):
     """
     If inside a whisk project directory, project-specific commands are added to the cli.
     """
-    try:
-        if Project():
-            click_group.add_command(app)
-            click_group.add_command(setup)
-    except OSError:
-        pass
+    if Project().in_project():
+        click_group.add_command(app)
+        click_group.add_command(setup)
 
 @click.group()
 def main():

@@ -1,5 +1,5 @@
 # Requirements for the core cookiecutter template.
-whisk
+{{cookiecutter.whisk_dependency}}
 ipykernel
 python-dotenv
 dvc

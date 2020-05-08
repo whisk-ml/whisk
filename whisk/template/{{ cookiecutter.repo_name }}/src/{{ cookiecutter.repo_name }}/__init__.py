@@ -1,6 +1,4 @@
-from os.path import dirname, realpath
-from pathlib import Path
+from os.path import realpath
+from whisk.project import Project
 
-module_dir = Path(realpath(__file__))
-artifacts_dir = module_dir / "artifacts"
-data_dir = module_dir.parents[2] / "data"
+project = Project.from_module(realpath(__file__))
