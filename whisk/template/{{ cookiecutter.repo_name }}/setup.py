@@ -1,6 +1,5 @@
 from setuptools import find_packages, setup
 
-
 def list_reqs(fname='requirements.txt'):
     """
     Adds the packages listed in `fname` as package requirements.
@@ -17,6 +16,9 @@ setup(
     package_dir={'': 'src'},
     packages=find_packages(where='src'),
     version='0.1.0',
+    include_package_data=True,
+    # TODO - show how to include dependencies with install_requires
+    # install_requires=list_reqs(),
     entry_points={
         'console_scripts': [
             '{{cookiecutter.project_name}}={{cookiecutter.project_name}}.cli.main:cli',
