@@ -59,6 +59,7 @@ workflows:
   build_and_deploy:
     jobs:
       - test
+          context: whisk
       - build
       - deploy:
           context: whisk
