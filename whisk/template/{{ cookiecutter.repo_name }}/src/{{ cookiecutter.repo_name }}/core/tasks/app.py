@@ -1,5 +1,5 @@
 from invoke import task
-from {{cookiecutter.project_name}}.core.utils import has_unstaged_changes
+import whisk.git as git
 
 @task
 def start(c):
@@ -13,7 +13,7 @@ def create(c,name):
     """
     Create a Heroku app for the web service.
     """
-    if has_unstaged_changes():
+    if git.has_unstaged_changes():
         print("This project has uncommitted changes.\nPlease add and commit the files to the Git repo, then retry:\n\ngit add .\ngit commit -m 'First Commit'")
         exit(1)
     c.run("heroku create -a {}".format(name))

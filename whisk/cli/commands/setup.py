@@ -1,5 +1,6 @@
 import click
 from whisk.project import Project
+import whisk.git as git
 import os
 import subprocess
 
@@ -42,7 +43,7 @@ def exec_setup(nbenv):
     # direnv will fail if not installed
     os.system("cp .envrc.example .envrc")
     os.system("direnv allow . > /dev/null 2>&1")
-    if has_unstaged_changes():
+    if git.has_unstaged_changes():
         exec("Adding files to git", "git add .")
         exec("Making initial Git commit", "git commit -m 'Initial project structure' --author=\"Whisk <whisk@whisk-ml.org>\" > /dev/null")
 

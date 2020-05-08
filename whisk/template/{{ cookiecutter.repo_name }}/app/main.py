@@ -1,5 +1,5 @@
 import flask
-from {{cookiecutter.project_name}}.core.utils import dvc_pull
+import whisk.dvc as dvc
 from {{cookiecutter.project_name}}.models.model import Model
 import sys
 import os
@@ -8,7 +8,7 @@ import os
 app = flask.Flask(__name__)
 # Pull the output of the DVC stage used to generate the serialized model when running on a
 # deployed server. For example:
-# dvc_pull("train.dvc")
+# dvc.pull("train.dvc")
 model = Model()
 
 @app.route("/predict", methods=["POST"])

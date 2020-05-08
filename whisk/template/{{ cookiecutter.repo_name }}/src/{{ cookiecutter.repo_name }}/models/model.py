@@ -1,15 +1,6 @@
-class DummyModel:
-    # DELETE ME - Remove this class when you load a real model. This only
-    # exists so the ModelWrapper works when creating an initial project.
-    """
-    A placeholder for a real ML Model. Returns the number of features in each row.
-
-    Example:
-
-        DummyModel().predict([[1,2],[3,4]]) => [2,2]
-    """
-    def predict(self,X):
-        return list(map(lambda instance: len(instance), X))
+import pickle
+from whisk.model_stub import ModelStub
+import {{cookiecutter.project_name}}
 
 class Model:
     """
@@ -22,19 +13,18 @@ class Model:
         Load the model + required pre-processing artifacts from disk. Loading from disk is slow,
         so this is done in `__init__` rather than loading from disk on every call to `predict`.
 
-        Use paths relative to the project root directory.
-
         Tensorflow example:
 
-            self.model = load_model("models/model.h5")
+            self.model = load_model({{cookiecutter.project_name}}.project.artifacts_dir / "model.h5")
 
         Pickle example:
 
-            with open('models/tokenizer.pickle', 'rb') as handle:
-                self.tokenizer = pickle.load(handle)
+            with open({{cookiecutter.project_name}}.project.artifacts_dir / 'tokenizer.pickle', 'rb') as file:
+                self.tokenizer = pickle.load(file)
         """
         # REPLACE ME - add your loading logic
-        self.model = DummyModel()
+        with open({{cookiecutter.project_name}}.project.artifacts_dir / "model.pkl", 'rb') as file:
+            self.model = pickle.load(file)
 
     def predict(self,data):
         """
