@@ -51,8 +51,8 @@ def set_example_notebook_kernel(nbenv):
     with open(NOTEBOOK_EXAMPLE_PATH, 'r') as file :
       filedata = file.read()
 
-    # Replace the target string
-    filedata = filedata.replace("[PROJECT_NAME]", nbenv)
+    # This could be run after the initial cookiecutter install.
+    filedata = filedata.replace("{{cookiecutter.project_name}}", nbenv)
 
     # Write the file out again
     with open(NOTEBOOK_EXAMPLE_PATH, 'w') as file:

@@ -73,11 +73,6 @@ docs: ## generate Sphinx HTML documentation, including API docs
 servedocs: docs ## compile the docs watching for changes
 	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
 
-bump-push: ## bump and push to Git
-	bump2version patch
-	git push
-	git push --tags
-
 release: dist ## package and upload a release
 	twine upload dist/*
 
@@ -89,8 +84,21 @@ dist: clean ## builds source and wheel package
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
 
-create-demo:
-	whisk create -o ~/projects/whisk_examples/ --force demo
-	cd ~/projects/whisk_examples/demo
-	~/projects/whisk_examples/demo/venv/bin/pip uninstall -y whisk
-	~/projects/whisk_examples/demo/venv/bin/pip install -e ~/projects/whisk
+### Commands added to whisk below ###
+
+bump-push: ## bump and push a patch release to Git
+	bump2version patch
+	git push
+	git push --tags
+
+PROJECT_DEMO_DIR = ~/projects/whisk_examples/demo
+
+create-demo: ## creates a demo whisk app for testing. destroys the existing one.
+	# I think whisk create --force only adds new files ... it may not create new ones.
+	# Manually deleting the directory.
+	# Assumes whisk project is in ~/projects/whisk
+	rm -Rf $(PROJECT_DEMO_DIR)
+	whisk create -o ~/projects/whisk_examples/ demo
+	cd $(PROJECT_DEMO_DIR)
+	$(PROJECT_DEMO_DIR)/venv/bin/pip uninstall -y whisk
+	$(PROJECT_DEMO_DIR)/venv/bin/pip install -e ~/projects/whisk

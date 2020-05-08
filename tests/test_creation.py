@@ -81,13 +81,13 @@ class TestCookieSetup(object):
         # ModuleNotFoundError: No module named 'flask'
         # check_output(['venv/bin/inv', 'app.test'], cwd=self.path)
 
-    def test_idempotent_install_script(self):
+    def test_idempotent_install_command(self):
         # Running setup is slow, so by default setup=False.
         if not pytest.param.get("setup"):
             return
 
         ago = dt.datetime.now()
-        check_output(['scripts/install.py'], cwd=self.path)
+        check_output(['whisk setup'], cwd=self.path)
         changed = changed_files(self.path,ago)
         # Script appears to update some files but unsure if that changes any functionality.
         # assert len(changed) == 0, "Files were modified: {}".format(changed)
@@ -96,7 +96,7 @@ class TestCookieSetup(object):
         # Running setup is slow, so by default setup=False.
         if not pytest.param.get("setup"):
             return
-        check_output(["venv/bin/inv", "notebooks.run", "notebooks/example.ipynb"],
+        check_output(["venv/bin/inv", "notebooks.run", "notebooks/getting_started.ipynb"],
                      cwd=self.path)
 
     def test_app_create(self):
