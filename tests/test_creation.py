@@ -130,7 +130,6 @@ class TestCookieSetup(object):
             'references',
             'reports',
             'reports/figures',
-            'scripts',
             'src',
             "src/{}".format(project_name),
             "src/{}/artifacts".format(project_name),
