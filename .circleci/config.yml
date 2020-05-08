@@ -41,11 +41,8 @@ jobs:
         - run: apt-get -y install ipython
         - run: apt-get -y install nano
         - run: apt-get -y install git
-        - run:
-            name: configure git
-            command: |
-              git config --global user.email "you@example.com"
-              git config --global user.name "Your Name"
+        - run: git config --global user.email "you@example.com"
+        - run: git config --global user.name "Your Name"
         - run: python -m venv venv
         - run: venv/bin/pip install jupyter
         - run: venv/bin/pip install -r requirements_dev.txt
