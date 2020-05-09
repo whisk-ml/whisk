@@ -93,6 +93,22 @@ Ready to contribute? Here's how to set up `whisk` for local development.
 
 7. Submit a pull request through the GitHub website.
 
+Creating a demo project
+-----------------------
+
+To create a demo project from your local fork of whisk:
+
+1. Set the following environment variables:
+
+    PROJECT_DEMO_DIR # The directory where the demo project will be created
+    PROJECT_DEMO_NAME # The name of the project
+
+2. Then run the make task:
+
+    $ make create-demo
+
+`make create-demo` deletes the existing demo project (if it exists) and creates a new project.
+
 Pull Request Guidelines
 -----------------------
 
