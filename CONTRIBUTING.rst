@@ -145,3 +145,13 @@ Then run::
     $ git push --tags
 
 CircleCI will then deploy to PyPI if tests pass.
+
+CI Setup - Required environment variables
+----------------
+
+GIT_AUTHOR_EMAIL
+GIT_AUTHOR_NAME
+GIT_COMMITTER_EMAIL
+GIT_COMMITTER_NAME
+PYPI_PASSWORD
+PYPI_USERNAME
