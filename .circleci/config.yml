@@ -45,6 +45,9 @@ workflows:
     jobs:
       - test:
           context: whisk
+          filters:
+            tags:
+              ignore: /.*/
   tagged-build:
     # CircleCI does not run workflows for tags unless you explicitly specify tag filters.
     # Additionally, if a job requires any other jobs (directly or indirectly),
@@ -56,6 +59,8 @@ workflows:
           filters:
             tags:
               only: /.*/
+            branches:
+              ignore: /.*/
       - deploy:
           context: whisk
           requires:
@@ -63,5 +68,3 @@ workflows:
           filters:
             tags:
               only: /^v[0-9]+.*/
-            branches:
-              ignore: /.*/
