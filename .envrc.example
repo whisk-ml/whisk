@@ -1,4 +1,6 @@
 # https://github.com/direnv/direnv
 # To load, see: https://github.com/direnv/direnv/wiki/Python#venv-stdlib-module
 export VIRTUAL_ENV=venv
+export PROJECT_DEMO_DIR=~/projects/whisk_examples/
+export PROJECT_DEMO_NAME=demo
 layout python-venv python3.6

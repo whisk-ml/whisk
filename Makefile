@@ -91,14 +91,14 @@ bump-push: ## bump and push a patch release to Git
 	git push
 	git push --tags
 
-PROJECT_DEMO_DIR = ~/projects/whisk_examples/demo
+FULL_PROJECT_DEMO_DIR = $(PROJECT_DEMO_DIR)$(PROJECT_DEMO_NAME)
 
 create-demo: ## creates a demo whisk app for testing. destroys the existing one.
 	# I think whisk create --force only adds new files ... it may not create new ones.
 	# Manually deleting the directory.
-	# Assumes whisk project is in ~/projects/whisk
-	rm -Rf $(PROJECT_DEMO_DIR)
-	whisk create -o ~/projects/whisk_examples/ demo
-	cd $(PROJECT_DEMO_DIR)
-	$(PROJECT_DEMO_DIR)/venv/bin/pip uninstall -y whisk
-	$(PROJECT_DEMO_DIR)/venv/bin/pip install -e ~/projects/whisk
+	rm -Rf $(FULL_PROJECT_DEMO_DIR)
+	whisk create -o $(PROJECT_DEMO_DIR) $(PROJECT_DEMO_NAME)
+	cd $(FULL_PROJECT_DEMO_DIR)
+	$(FULL_PROJECT_DEMO_DIR)/venv/bin/pip uninstall -y whisk
+	$(FULL_PROJECT_DEMO_DIR)/venv/bin/pip install -e ~/projects/whisk
+	echo "Access the demo project via cd $(FULL_PROJECT_DEMO_DIR)"
