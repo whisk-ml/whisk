@@ -21,9 +21,15 @@ def create(project_name, output_dir=".", setup=None, force=False):
     """
     Creates a whisk project.
     """
+    whisk_version = "whisk>={}".format(whisk.__version__)
+    # `whisk_dependency` is more flexible (for example, specifying a local install)
+    # than `whisk_install_requires` and is used in testing to require the local version of whisk.
     extra_content = {
         "project_name": project_name,
-        "whisk_dependency": "whisk>={}".format(whisk.__version__)
+        # Added to the project's requirements.txt
+        "whisk_dependency": whisk_version,
+        # Added to the project's setup.py file
+        "whisk_install_requires": whisk_version
     }
     if setup is not None:
         extra_content["setup"] = setup

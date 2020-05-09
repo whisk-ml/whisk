@@ -18,7 +18,7 @@ setup(
     version='0.1.0',
     include_package_data=True,
     install_requires=[
-        '{{cookiecutter.whisk_dependency}}'
+        '{{cookiecutter.whisk_install_requires}}'
     ],
     entry_points={
         'console_scripts': [

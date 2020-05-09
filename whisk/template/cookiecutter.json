@@ -8,5 +8,6 @@
     "aws_profile": "default",
     "python_interpreter": ["python3", "python"],
     "setup": true ,
-    "whisk_dependency": "whisk"
+    "whisk_dependency": "whisk",
+    "whisk_install_requires": "whisk"
 }
