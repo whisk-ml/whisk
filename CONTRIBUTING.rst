@@ -146,6 +146,10 @@ Then run::
 
 CircleCI will then deploy to PyPI if tests pass.
 
+If doing a small patch, you can just run:
+
+    $ make bump-push
+
 CI Setup - Required environment variables
 ----------------
 
