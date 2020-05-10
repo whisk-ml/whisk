@@ -1,4 +1,5 @@
 import click
+import subprocess
 
 @click.group()
 def app():
@@ -7,7 +8,7 @@ def app():
 @app.command()
 def start():
     """Start the HTTP web service."""
-    print("starting")
+    subprocess.call("honcho -f app/Procfile.dev start", shell=True)
 
 @app.command()
 def create(name):

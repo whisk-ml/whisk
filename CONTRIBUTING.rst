@@ -146,6 +146,7 @@ Then run::
     $ make release
 
 We intended to have CircleCI perform the release, but it's having issues with git tags.
+https://discuss.circleci.com/t/jobs-triggered-by-annotated-tags-fail-when-using-built-in-git-client/34486
 
 If doing a small patch, you can just run:
 
