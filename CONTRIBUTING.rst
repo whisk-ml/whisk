@@ -137,18 +137,20 @@ When running `pytest`, you are testing the source code in the current `venv`. Wh
 Deploying
 ---------
 
-Make sure all your changes are committed (including an entry in HISTORY.rst).
+Make sure all your changes are pushed (including an entry in HISTORY.rst) and pass CI tests.
 Then run::
 
     $ bump2version patch # possible: major / minor / patch
     $ git push
     $ git push --tags
+    $ make release
 
-CircleCI will then deploy to PyPI if tests pass.
+We intended to have CircleCI perform the release, but it's having issues with git tags.
 
 If doing a small patch, you can just run:
 
     $ make bump-push
+    $ make release
 
 CI Setup - Required environment variables
 ----------------
