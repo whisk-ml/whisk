@@ -55,13 +55,14 @@ jobs:
         - store_artifacts:
             path: test_results
 workflows:
-  test_py37:
+  version: 2
+  test:
     jobs:
       - test:
           context: whisk
+          name: test-py37
           env: py37
-  test_py38:
-    jobs:
       - test:
           context: whisk
-          env: py37
+          name: test-py38
+          env: py38
