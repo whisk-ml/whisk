@@ -150,8 +150,7 @@ https://discuss.circleci.com/t/jobs-triggered-by-annotated-tags-fail-when-using-
 
 If doing a small patch, you can just run:
 
-    $ make bump-push
-    $ make release
+    $ make bump-push release
 
 CI Setup - Required environment variables
 ----------------
