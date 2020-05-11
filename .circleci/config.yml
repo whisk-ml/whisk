@@ -45,6 +45,8 @@ jobs:
             paths:
               - "venv"
               - ".tox"
+              # installed with created project via `whisk setup`
+              - "/tmp/pytest-of-root/"
         - store_test_results:
             path: test_results
         - store_artifacts:
