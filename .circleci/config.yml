@@ -48,8 +48,7 @@ jobs:
             paths:
               - "venv"
               - ".tox"
-              # installed with created project via `whisk setup`
-              - "/tmp/pytest-of-root/"
+              # The really slow part is installing the project dependencies but can't figure out how to cache this.
         - store_test_results:
             path: test_results
         - store_artifacts:
