@@ -26,7 +26,9 @@ def exec(desc,cmd):
 
 def exec_setup(nbenv):
     exec("Setting up venv","python3 -m venv {}/venv".format(os.getcwd()))
-    exec("Installing Python dependencies via pip","venv/bin/pip install -r requirements.txt > /dev/null")
+    # Commented out dev/null to inspect caching behavior
+    exec("Installing Python dependencies via pip","venv/bin/pip install -r requirements.txt")
+    #exec("Installing Python dependencies via pip","venv/bin/pip install -r requirements.txt > /dev/null")
     print("Initializing the Git repo")
     # Idempotent so just execute
     os.system("git init > /dev/null 2>&1")

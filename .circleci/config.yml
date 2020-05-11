@@ -1,6 +1,7 @@
 # Based on https://qxf2.com/blog/tox-with-circleci/
 version: 2
 jobs:
+  # While this job isn't in a workflow, it works. Kept around for reference.
   deploy:
       docker:
         - image: circleci/python:3.7
@@ -36,8 +37,10 @@ jobs:
         - run: venv/bin/pip install jupyter
         - run: venv/bin/pip install -r requirements_dev.txt
         - run: echo "source /root/project/venv/bin/activate" >> $BASH_ENV
-        - run: tox -q
+        - run: tox -v
         - save_cache:
+            # Had trouble w/the full cache key reaching into the template dir
+            # key: deps-0-{{ .Branch }}-{{ checksum "requirements_dev.txt" }}-{{ checksum "setup.py" }}-{{ checksum "whisk/template/\{\{\ cookiecutter.repo_name\ \}\}/requirements.txt"}}
             key: deps-0-{{ .Branch }}-{{ checksum "requirements_dev.txt" }}-{{ checksum "setup.py" }}
             paths:
               - "venv"
@@ -48,20 +51,17 @@ jobs:
             path: test_results
 workflows:
   version: 2
-  test_and_deploy:
+  test:
     jobs:
       - test:
           context: whisk
-          filters:  # required since `deploy` has tag filters AND requires `test`
-            tags:
-              only: /.*/
-      # deploy isn't working ...
-      - deploy:
-          context: whisk
-          requires:
-            - test
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
+      # deploy isn't working ... the tags aren't being checked out by CircleCI ... at one time, I swore this worked fine.
+      # - deploy:
+      #     context: whisk
+      #     requires:
+      #       - test
+      #     filters:
+      #       tags:
+      #         only: /^v.*/
+      #       branches:
+      #         ignore: /.*/
