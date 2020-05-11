@@ -77,6 +77,16 @@ from demo import model
 model.predict([[0,1],[2,3]])
 ```
 
+## Whisk CLI Commands
+
+To see a list of available whisk commands and command groups:
+
+    whisk --help
+
+You can view help on specific command groups like this:
+
+    whisk app --help
+
 ## Beliefs
 
 * _A notebook isn't enough_ - A data science notebook is where experimentation starts, but you can't create a reproducible, collaborative ML project with just a `*.ipynb` file.
