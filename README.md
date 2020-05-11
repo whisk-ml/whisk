@@ -24,18 +24,19 @@ cd demo
 source venv/bin/activate
 ```
 
-Checkout the end-to-end notebook example:
+Take a quick tour the project you just created:
 
 ```
-jupyter-notebook notebooks/example.ipynb
+jupyter-notebook notebooks/getting_stated.ipynb
 ```
 
-The notebook shows how to save your trained model to disk, use the saved model to generate predictions, and how to load Python functions and classes from the project's `src` directory for a cleaner notebook. It's the guide rails for your own ML project.
+The notebook shows how to save your trained model to disk, use the saved model to generate predictions, how to load Python functions and classes from the project's `src` directory for a cleaner notebook, and more. It's the guide rails for your own ML project.
 
 There's a placeholder model you can invoke immediately from the command line:
 
 ```
-whisk predict [[0,1],[2,3]]
+$ demo predict [[0,1],[2,3]]
+[2, 2]
 ```
 
 ...and a ready-to-go Flask web service:
@@ -56,8 +57,10 @@ whisk app create demo-[INSERT YOUR NAME]
 Create a Python package containing your model and share with the world:
 
 ```
-whisk model build
-echo "Installing the generated Python package"
+$ whisk package dist
+Python Package created in /Users/dlite/projects/whisk_examples/demo/dist:
+demo-0.1.0.tar.gz
+
 pip install dist/demo-0.1.0.tar.gz
 ```
 

@@ -30,12 +30,6 @@ def exec_setup(nbenv):
     print("Initializing the Git repo")
     # Idempotent so just execute
     os.system("git init > /dev/null 2>&1")
-    # TODO - move dvc setup to an in-app task
-    # if os.system("venv/bin/dvc status > /dev/null 2>&1") != 0:
-    #     exec("Initializing DVC","venv/bin/dvc init > /dev/null")
-    #     exec("Setting up default local DVC remote","venv/bin/dvc remote add -d local /tmp/dvc-storage")
-    # if not os.path.isfile(".git/hooks/post-checkout"):
-    #     exec("Installing Git hooks into the DVC repository","venv/bin/dvc install > /dev/null")
     # Would rather use --sys-prefix, but not working:
     # https://github.com/jupyter/notebook/issues/4567
     exec("Setting up venv={} for Jupyter Notebooks".format(nbenv),"venv/bin/python -m ipykernel install --user --name={}".format(nbenv))

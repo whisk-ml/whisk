@@ -13,7 +13,6 @@ boto3 # AWS API for S3 bucket management needed for DVC remotes
 Flask==1.1.2 # Web service HTTP API
 honcho==1.0.1 # Procfile support
 gunicorn==20.0.4 # App server for Flask app
-invoke==1.4.1 # Project tasks
 tox==3.15.0 # Testing the package in insolation and across Python versions
 twine==1.14.0 # Package distribution
 pytest==4.6.5 # Tests

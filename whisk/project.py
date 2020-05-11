@@ -20,6 +20,7 @@ class Project:
         """
         self.dir = dir
         self.path = Path(self.dir)
+        self.name = self.path.stem
         self.module_dir = module_dir
         if not self.module_dir:
             self.module_dir = self.path / "src/{}".format(self.slug())

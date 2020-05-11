@@ -29,11 +29,14 @@ class WhiskMultiCommand(click.MultiCommand):
         MultiCommand classes must implement this function.
         This returns a set of file names across all directories.
         """
+        project = Project()
         rv = []
         rv = rv + self._command_file_names(self.core_commands_dir())
-        if Project().in_project():
+        if project.in_project():
             rv = rv + self._command_file_names(self.core_project_commands_dir())
-            rv = rv + self._command_file_names(Project().commands_dir)
+            # Possible commands directory is deleted in project
+            if project.commands_dir.exists():
+                rv = rv + self._command_file_names(project.commands_dir)
 
         rv.sort()
         return set(rv)
@@ -64,7 +67,12 @@ class WhiskMultiCommand(click.MultiCommand):
         with open(fn) as f:
             code = compile(f.read(), fn, 'exec')
             eval(code, ns, ns)
-        return ns['cli']
+
+        if 'cli' in ns:
+            return ns['cli']
+        else:
+            # The code was eval'd but did not have a `cli` key in the namespace.
+            return
 
     def get_command(self, ctx, name):
         """
