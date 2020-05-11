@@ -37,7 +37,7 @@ jobs:
         - run: venv/bin/pip install jupyter
         - run: venv/bin/pip install -r requirements_dev.txt
         - run: echo "source /root/project/venv/bin/activate" >> $BASH_ENV
-        - run: tox -v
+        - run: tox -e << parameters.env >>
         - save_cache:
             # Had trouble w/the full cache key reaching into the template dir
             # key: deps-0-{{ .Branch }}-{{ checksum "requirements_dev.txt" }}-{{ checksum "setup.py" }}-{{ checksum "whisk/template/\{\{\ cookiecutter.repo_name\ \}\}/requirements.txt"}}
@@ -53,10 +53,16 @@ jobs:
             path: test_results
 workflows:
   version: 2
-  test:
+  test_py37:
     jobs:
       - test:
           context: whisk
+          env: py37
+  test_py38:
+    jobs:
+      - test:
+          context: whisk
+          env: py37
       # deploy isn't working ... the tags aren't being checked out by CircleCI ... at one time, I swore this worked fine.
       # - deploy:
       #     context: whisk
