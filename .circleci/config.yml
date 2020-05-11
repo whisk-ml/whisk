@@ -23,6 +23,9 @@ jobs:
         - store_artifacts:
             path: dist
   test:
+      parameters:
+        env:
+          type: string
       docker:
         - image: themattrix/tox
       steps:
@@ -63,13 +66,3 @@ workflows:
       - test:
           context: whisk
           env: py37
-      # deploy isn't working ... the tags aren't being checked out by CircleCI ... at one time, I swore this worked fine.
-      # - deploy:
-      #     context: whisk
-      #     requires:
-      #       - test
-      #     filters:
-      #       tags:
-      #         only: /^v.*/
-      #       branches:
-      #         ignore: /.*/
