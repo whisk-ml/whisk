@@ -1,5 +1,5 @@
 # Based on https://qxf2.com/blog/tox-with-circleci/
-version: 2
+version: 2.1
 jobs:
   # While this job isn't in a workflow, it works. Kept around for reference.
   deploy:
@@ -55,7 +55,6 @@ jobs:
         - store_artifacts:
             path: test_results
 workflows:
-  version: 2
   test_py37:
     jobs:
       - test:
