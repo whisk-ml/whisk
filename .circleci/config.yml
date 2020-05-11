@@ -31,17 +31,17 @@ jobs:
         - run: apt-get -y install nano
         - run: apt-get -y install git
         - restore_cache:  # ensure this step occurs *before* installing dependencies
-          key: deps-0-{{ .Branch }}-{{ checksum "requirements_dev.txt" }}-{{ checksum "setup.py" }}-{{ checksum "whisk/template/\{\{\ cookiecutter.repo_name\ \}\}/requirements.txt"}}
+            key: deps-0-{{ .Branch }}-{{ checksum "requirements_dev.txt" }}-{{ checksum "setup.py" }}-{{ checksum "whisk/template/\{\{\ cookiecutter.repo_name\ \}\}/requirements.txt"}}
         - run: python -m venv venv
         - run: venv/bin/pip install jupyter
         - run: venv/bin/pip install -r requirements_dev.txt
         - run: echo "source /root/project/venv/bin/activate" >> $BASH_ENV
         - run: tox -q
         - save_cache:
-          key: deps-0-{{ .Branch }}-{{ checksum "requirements_dev.txt" }}-{{ checksum "setup.py" }}-{{ checksum "whisk/template/\{\{\ cookiecutter.repo_name\ \}\}/requirements.txt"}}
-          paths:
-            - "venv"
-            - ".tox"
+            key: deps-0-{{ .Branch }}-{{ checksum "requirements_dev.txt" }}-{{ checksum "setup.py" }}-{{ checksum "whisk/template/\{\{\ cookiecutter.repo_name\ \}\}/requirements.txt"}}
+            paths:
+              - "venv"
+              - ".tox"
         - store_test_results:
             path: test_results
         - store_artifacts:
