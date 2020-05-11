@@ -37,7 +37,8 @@ jobs:
         - run: venv/bin/pip install jupyter
         - run: venv/bin/pip install -r requirements_dev.txt
         - run: echo "source /root/project/venv/bin/activate" >> $BASH_ENV
-        - run: tox -v
+        # runs a 2-cpu container
+        - run: tox -p 2
         - save_cache:
             # Had trouble w/the full cache key reaching into the template dir
             # key: deps-0-{{ .Branch }}-{{ checksum "requirements_dev.txt" }}-{{ checksum "setup.py" }}-{{ checksum "whisk/template/\{\{\ cookiecutter.repo_name\ \}\}/requirements.txt"}}
@@ -45,8 +46,6 @@ jobs:
             paths:
               - "venv"
               - ".tox"
-              # installed with created project via `whisk setup`
-              - "/tmp/pytest-of-root/"
         - store_test_results:
             path: test_results
         - store_artifacts:
