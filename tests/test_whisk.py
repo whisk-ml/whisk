@@ -13,8 +13,6 @@ from whisk import whisk
 from whisk.cli import cli
 from pathlib import Path
 
-
-
 @pytest.fixture
 def response():
     """Sample pytest fixture.
@@ -34,9 +32,9 @@ def test_content(response):
 def test_cli():
     """Test the CLI."""
     runner = CliRunner()
-    result = runner.invoke(cli.main)
+    result = runner.invoke(cli.cli)
     assert result.exit_code == 0
-    help_result = runner.invoke(cli.main, ['--help'])
+    help_result = runner.invoke(cli.cli, ['--help'])
     assert help_result.exit_code == 0
 
 def test_create_via_cli():
@@ -44,7 +42,7 @@ def test_create_via_cli():
     project_name = "project_name_cli"
     runner = CliRunner()
     with runner.isolated_filesystem():
-        result = runner.invoke(cli.create,[project_name, '--no-setup'])
+        result = runner.invoke(cli.cli,['create', project_name, '--no-setup'])
         assert result.exit_code == 0
         assert os.path.exists((Path(os.getcwd()) / project_name))
 

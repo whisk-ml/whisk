@@ -25,7 +25,8 @@ class Project:
             self.module_dir = self.path / "src/{}".format(self.slug())
         self.artifacts_dir = self.module_dir / "artifacts"
         if self.in_project():
-            self.data_dir = self.path/ "data"
+            self.data_dir = self.path / "data"
+            self.commands_dir = self.path / "whisk_commands"
 
     def validate_in_project(self):
         if not self.in_project():

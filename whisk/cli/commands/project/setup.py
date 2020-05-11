@@ -60,7 +60,7 @@ def set_example_notebook_kernel(nbenv):
         file.write(filedata)
 
 @click.command()
-def setup():
+def cli():
     """
     Sets up the project environment.
     """
