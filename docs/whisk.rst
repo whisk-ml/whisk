@@ -1,13 +1,44 @@
 whisk package
 =============
 
+Subpackages
+-----------
+
+.. toctree::
+
+    whisk.cli
+
 Submodules
 ----------
 
-whisk.cli module
+whisk.dvc module
 ----------------
 
-.. automodule:: whisk.cli
+.. automodule:: whisk.dvc
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+whisk.git module
+----------------
+
+.. automodule:: whisk.git
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+whisk.model\_stub module
+------------------------
+
+.. automodule:: whisk.model_stub
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+whisk.project module
+--------------------
+
+.. automodule:: whisk.project
     :members:
     :undoc-members:
     :show-inheritance:

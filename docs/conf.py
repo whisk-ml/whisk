@@ -19,6 +19,8 @@
 #
 import os
 import sys
+import recommonmark
+from recommonmark.transform import AutoStructify
 sys.path.insert(0, os.path.abspath('..'))
 
 import whisk
@@ -31,7 +33,7 @@ import whisk
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode', 'recommonmark']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -159,4 +161,15 @@ texinfo_documents = [
 ]
 
 
-
+# app setup hook
+# see https://github.com/readthedocs/recommonmark/blob/master/docs/conf.py#L293
+def setup(app):
+    app.add_config_value('recommonmark_config', {
+        #'url_resolver': lambda url: github_doc_root + url,
+        'auto_toc_tree_section': 'Contents',
+        'enable_math': False,
+        'enable_inline_math': False,
+        'enable_eval_rst': True,
+        'enable_auto_doc_ref': True,
+    }, True)
+    app.add_transform(AutoStructify)
