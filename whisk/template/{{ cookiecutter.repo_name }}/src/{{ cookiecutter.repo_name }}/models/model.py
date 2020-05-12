@@ -1,6 +1,5 @@
 import whisk
 import pickle
-from whisk.model_stub import ModelStub # Remove when updated with your model
 
 class Model:
     """
