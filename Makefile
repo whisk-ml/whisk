@@ -92,6 +92,12 @@ bump-push: ## bump and push a patch release to Git
 	git push --tags
 
 FULL_PROJECT_DEMO_DIR = $(PROJECT_DEMO_DIR)$(PROJECT_DEMO_NAME)
+NB_PATH = notebooks/getting_started.ipynb
+
+update-notebook: ## Copies the demo project notebook back and replaces with the cookiecutter project name
+	cp $(FULL_PROJECT_DEMO_DIR)/$(NB_PATH) whisk/template/\{\{\ cookiecutter.repo_name\ \}\}/notebooks/
+	sed -i '' -e 's/$(PROJECT_DEMO_NAME)/{{cookiecutter.project_name}}/g' whisk/template/\{\{\ cookiecutter.repo_name\ \}\}/$(NB_PATH)
+
 
 create-demo: ## creates a demo whisk app for testing. destroys the existing one.
 	# I think whisk create --force only adds new files ... it may not create new ones.

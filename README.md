@@ -27,7 +27,7 @@ source venv/bin/activate
 Take a quick tour the project you just created:
 
 ```
-jupyter-notebook notebooks/getting_stated.ipynb
+jupyter-notebook notebooks/getting_started.ipynb
 ```
 
 The notebook shows how to save your trained model to disk, use the saved model to generate predictions, how to load Python functions and classes from the project's `src` directory for a cleaner notebook, and more. It's the guide rails for your own ML project.
