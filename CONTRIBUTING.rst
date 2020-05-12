@@ -142,6 +142,12 @@ It's easy to add files to version control but forget to include in the MANIFEST.
     $ check-manifest
 
 
+Updating the getting started notebook
+-------------------------------------
+
+The project contains a notebook to help orientate new users. You can modify this notebook in the demo project and update the template with:
+
+    $ make update-notebook
 
 
 Deploying

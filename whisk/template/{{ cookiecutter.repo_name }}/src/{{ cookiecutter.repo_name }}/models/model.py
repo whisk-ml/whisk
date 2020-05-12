@@ -1,6 +1,6 @@
+import whisk
 import pickle
-from whisk.model_stub import ModelStub
-import {{cookiecutter.project_name}}
+from whisk.model_stub import ModelStub # Remove when updated with your model
 
 class Model:
     """
@@ -15,15 +15,15 @@ class Model:
 
         Tensorflow example:
 
-            self.model = load_model({{cookiecutter.project_name}}.project.artifacts_dir / "model.h5")
+            self.model = load_model(whisk.artifacts_dir / "model.h5")
 
         Pickle example:
 
-            with open({{cookiecutter.project_name}}.project.artifacts_dir / 'tokenizer.pickle', 'rb') as file:
+            with open(whisk.artifacts_dir / 'tokenizer.pickle', 'rb') as file:
                 self.tokenizer = pickle.load(file)
         """
         # REPLACE ME - add your loading logic
-        with open({{cookiecutter.project_name}}.project.artifacts_dir / "model.pkl", 'rb') as file:
+        with open(whisk.artifacts_dir / "model.pkl", 'rb') as file:
             self.model = pickle.load(file)
 
     def predict(self,data):

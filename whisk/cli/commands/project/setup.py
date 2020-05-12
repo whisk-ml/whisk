@@ -58,6 +58,6 @@ def cli():
     """
     Sets up the project environment.
     """
-    nbenv = Project().slug()
+    nbenv = Project().name
     exec_setup(nbenv)
     print("Install completed ✓.")
