@@ -2,7 +2,7 @@
 
 __author__ = """Derek Haynes"""
 __email__ = 'derek@dlite.cc'
-__version__ = '0.1.21'
+__version__ = '0.1.24'
 
 """
 Reference to the current whisk.Project. Set when whisk is loaded from
