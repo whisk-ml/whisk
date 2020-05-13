@@ -8,24 +8,15 @@ TODO
 
 ## Documentation
 
-
 ```eval_rst
 .. toctree::
    :maxdepth: 2
 
    installation
    usage
+   modules
    changelog
    contributing
-```
-
-## API Reference
-
-```eval_rst
-.. toctree::
-   :maxdepth: 2
-
-   modules
 ```
 
 ```eval_rst
