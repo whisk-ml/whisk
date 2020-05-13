@@ -64,8 +64,8 @@ instance/
 
 # Sphinx documentation
 docs/_build/
-docs/source/modules.rst
-docs/source/whisk*
+docs/modules.rst
+docs/whisk*
 
 # PyBuilder
 target/
