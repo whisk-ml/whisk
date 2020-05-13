@@ -1,6 +1,6 @@
 # {{cookiecutter.project_name}}
 
-This readme was auto-generated using `whisk`. `whisk` creates a logical and flexible project structure for ML that creates reproducible results and lets you release your model to the world without becoming a software engineer. 
+This readme was auto-generated using `whisk`. `whisk` creates a logical and flexible project structure for ML with reproducible results and lets you release your model to the world without becoming a software engineer. 
 
 Once your project is setup, edit this readme directly to add context and documentation for your project.
 
@@ -16,9 +16,10 @@ The following is required to run this project:
 
 After cloning this repo and `cd {{cookiecutter.project_name}}`:
 
-1. Run `whisk setup`. The install script creates a `venv`, installs the Python dependencies specified, and initializes DVC.
-2. Activate the venv: `source venv/bin/activate`
-3. If DVC is used, Download the latest data files: `dvc pull`.
+1. If you haven't yet installed `whisk`, run `pip install whisk`
+2. Run `whisk setup`. The install script creates a `venv`, installs the Python dependencies specified, and initializes DVC.
+3. Activate the venv: `source venv/bin/activate`
+4. If DVC is used, Download the latest data files: `dvc pull`.
 
 ## Whisk CLI Commands
 
@@ -42,14 +43,14 @@ whisk app --help
 {{cookiecutter.project_name}} predict <input_format>
 ```
 
-## Accessing {{cookiecutter.project_name}} directly
+## Accessing {{cookiecutter.project_name}} in Python
 
 {{cookiecutter.project_name}} also allows for prediction directly in the CLI:
 
 ```
 from {{cookiecutter.project_name}}.models.model import Model
 
-model.predict([[0,1],[2,3]])
+model.predict(<input_format>)
 ```
 
 
@@ -93,7 +94,7 @@ Project Organization
     │   │
     │   ├── models         <- Scripts to train models and then use trained models to make
     │   │   │                 predictions
-    │   │   └── predict_model.py <- Template model class for use with whisk
+    │   │   └── model.py   <- Template model class for use with whisk
     │   │
     │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
     │       └── visualize.py
