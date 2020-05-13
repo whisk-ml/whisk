@@ -1,6 +1,10 @@
 # Whisk ML Project Framework
 
+[![whisk](/docs/img/whisk_logo.png)](https://github.com/whisk-ml/whisk)
+
 [![pypi](https://img.shields.io/pypi/v/whisk.svg)](https://pypi.python.org/pypi/whisk)
+
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/whisk)](https://pypi.python.org/pypi/whisk)
 
 [![docs](https://readthedocs.org/projects/whisk/badge/?version=latest)](https://whisk.readthedocs.io/en/latest/?badge=latest)
 
@@ -73,7 +77,8 @@ demo predict [[0,1],[2,3]]
 ...and within Python code:
 
 ```py
-from demo import model
+from demo.models.model import Model
+model = Model()
 model.predict([[0,1],[2,3]])
 ```
 
