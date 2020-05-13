@@ -13,12 +13,10 @@ TODO
 .. toctree::
    :maxdepth: 2
 
-   readme
    installation
    usage
+   changelog
    contributing
-   authors
-   history
 ```
 
 ## API Reference

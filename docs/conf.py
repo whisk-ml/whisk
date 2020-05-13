@@ -22,6 +22,7 @@ import sys
 import recommonmark
 from recommonmark.transform import AutoStructify
 sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../'))
 
 import whisk
 
@@ -36,6 +37,7 @@ import whisk
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode', 'recommonmark', 'autoapi.extension']
 
 autoapi_dirs = ['../whisk']
+# Don't include the cookiecutter template, which has invalid Python.
 autoapi_ignore = ['*/template/*']
 
 # Add any paths that contain templates here, relative to this directory.
