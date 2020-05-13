@@ -59,6 +59,10 @@ workflows:
     jobs:
       - test:
           context: whisk
+          name: test-py36
+          env: py36
+      - test:
+          context: whisk
           name: test-py37
           env: py37
       - test:
