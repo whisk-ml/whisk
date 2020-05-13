@@ -1,0 +1,6 @@
+# This is used to remove files before heroku deployment
+# More info: https://devcenter.heroku.com/articles/slug-compiler#ignoring-files-with-slugignore
+
+# Default project files not needed for deployment
+/data
+/notebooks
