@@ -19,6 +19,7 @@ pytest==4.6.5 # Tests
 pytest-runner==5.1 # Tests
 
 ### Common Data Science Packages
+# Already have a list of project requirements? Remove conflicting packages.
 cloudpickle # For serializing constructs that Pickle can't.
 ipython
 jupyter
