@@ -1,0 +1,6 @@
+# Dependencies required for building docs
+# conf.py calls import whisk, which will fail without these.
+Click>=7.0
+cookiecutter>=1.7.2
+boto3
+sphinx-autoapi
