@@ -119,6 +119,7 @@ The [whisk-ml](https://github.com/whisk-ml) GitHub org contains example whisk pr
    key_concepts
    installation
    usage
+   cli_reference
    modules
    changelog
    contributing
