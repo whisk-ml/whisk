@@ -10,7 +10,7 @@ def cli():
 
 @cli.command()
 def dist():
-    pass
+    """Builds a source distribution of the project."""
     call("python setup.py sdist > /dev/null", shell=True)
     click.echo("Python Package created in {}:".format(project.path / "dist"))
     res = check_output("ls -h dist", shell=True)
