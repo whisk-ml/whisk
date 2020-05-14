@@ -1,3 +1,4 @@
+"""Manage the web service."""
 import click
 from subprocess import call
 import whisk.git as git
