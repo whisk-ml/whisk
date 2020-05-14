@@ -34,7 +34,7 @@ Since a whisk project uses a standard Python project code structure, there are m
 
 #### From Python code
 
-The model code resides in the `src/demo` directory of the project. The source code is installed as an editable Python package, so you can run the model from the Python console or from within a notebook cell:
+The model code resides in the `src/demo/models` directory of the project. The source code is installed as an editable Python package, so you can run the model from the Python console or from within a notebook cell:
 
 ```py
 from demo.models.model import Model
@@ -96,6 +96,10 @@ $ whisk app create demo-[INSERT YOUR NAME]
 ```
 
 ### What next?
+
+#### Change the example model
+
+To change the example model, head over to `src/demo/models/model.py` and make a small change to the `predict` method. After saving this, you'll see all whisk functionality automatically update with this new logic.
 
 #### Open the example notebook
 

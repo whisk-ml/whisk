@@ -1,4 +1,4 @@
-[![whisk](/docs/img/whisk_logo.png)](https://github.com/whisk-ml/whisk)
+# whisk: The easy-bake ML project structure
 
 [![pypi](https://img.shields.io/pypi/v/whisk.svg)](https://pypi.python.org/pypi/whisk)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/whisk)](https://pypi.python.org/pypi/whisk)
