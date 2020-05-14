@@ -1,6 +1,6 @@
 ## Key Concepts
 
-whisk is a ML project framework that make makes collaboration, reproducibility, and deployment "just work". Let's go through a few concepts that are important to understanding how whisk makes this happen.
+whisk is a ML project framework that makes collaboration, reproducibility, and deployment "just work". Let's go through a few concepts that are important to understanding how whisk makes this happen.
 
 ### Structure
 
