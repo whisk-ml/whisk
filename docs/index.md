@@ -1,6 +1,6 @@
 # whisk documentation
 
-__whisk is an open-source ML project framework that make makes collaboration, reproducibility, and deployment "just work".__ It combines a suite of lightweight tools with a logical and flexible project structure. Release your model to the world without a software engineer.
+__whisk is an open-source ML project framework that makes collaboration, reproducibility, and deployment "just work".__ It combines a suite of lightweight tools with a logical and flexible project structure. Release your model to the world without a software engineer.
 
 Whisk doesn't lock you into a particular ML framework or require you to learn yet another ML packaging API. Instead, it lets you leverage the large Python ecosystem by structuring your ML project in a [Pythonic-way](
 https://docs.python-guide.org/writing/structure/). Whisk does the structuring while you focus on the data science.
