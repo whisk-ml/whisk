@@ -49,9 +49,9 @@ To get help on a specific command, append `--help` to the command. For example:
 
 ### whisk create
 
-Create a new project by running `whisk create [YOUR PROJECT NAME]` after [installing whisk](installation.html).
+Create a new project by running `whisk create [PROJECT_NAME]` after [installing whisk](installation.html).
 
-`whisk create` sets up the directory structure, initializes a Git repo, creates a venv, installs dependencies, and more. This gives you everything needed to get started on your ML project.
+`whisk create` sets up the [directory structure](project_structure.html), initializes a Git repo, creates a venv, installs dependencies, and more. This gives you everything needed to get started on your ML project.
 
 ### whisk setup
 
