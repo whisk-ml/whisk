@@ -53,6 +53,8 @@ A project created with [`whisk create`](cli_reference.html#whisk-create) generat
     ├── tox.ini               <- tox file to test the package against multiple Python environments.
     │                            See tox.testrun.org.
     │
+    ├── venv                  <- The Python3 virtual environment for the project.
+    │
     └── whisk_commands        <- Add custom `whisk` CLI commands and override existing ones.
         │                        Powered by https://click.palletsprojects.com/en/7.x/.
         └── app.py
