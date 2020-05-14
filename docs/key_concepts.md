@@ -24,15 +24,17 @@ Your whisk project will contain a variety of different sources of code. You may 
 
 #### Artifacts
 
-As you are using specific datasets, you'll likely want to save them and reference later as part of your model code. Also, once you land on a version of your model that peforms well, you might want to save that model for prediction as a a [pickled object](https://docs.python.org/3/library/pickle.html). Both the datasets and model objects will be saves as **artifacts** in your whisk project. 
+As you are creating specific datasets, you'll likely want to save them and reference later as part of your model code. Also, once you land on a version of your model that peforms well, you might want to save that model for prediction as a object such as a [pickle](https://docs.python.org/3/library/pickle.html). Both the datasets and model objects will be saved as **artifacts** in your whisk project. 
 
 These are stored in `/src/<name>/artifacts/` and their location can be referenced throughout your project with `whisk.artifact_dir`.
+
+Note: This automatically stores all artifacts within your git repository. For very large artifacts, you'll likely want to store those objects with DVC instead. Documentation for DVC is coming soon.
 
 ### Outputs
 
 #### Project Package
 
-As you are developing your project and placing code in the `/src/<name>/` directory, whisk automatically turns your project into a functioning Python package. In the same way that you might `import pandas` at the beginning of an analysis, you can `import <name>` within your project and access functionality that was developed with your model. For example, your model is accessible with `from <name>.models.model import Model`.
+As you are developing your project and placing code in the `/src/<name>/` directory, whisk automatically converts your project into a functioning Python package. In the same way that you might `import pandas` at the beginning of an analysis, you can `import <name>` within your project and access functionality that was developed with your model. For example, your model is accessible with `from <name>.models.model import Model`.
 
 The purpose of keeping the code packaged and available is to encourage easy collaboration. If you are ready to share your project with others, its easy to run `whisk package dist` so that others can also import and use the functionality from your project.
 
@@ -75,4 +77,4 @@ To check out all of the available CLI commands, run this command:
 ```
 $ whisk --help
 ```
-To learn more about these CLI commands, check out the [CLI documentation](#).
+To learn more about these CLI commands, check out the [CLI documentation](cli_reference.html).
