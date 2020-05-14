@@ -114,3 +114,6 @@ TODO.md
 
 # pytest results
 test_results
+
+# OSX files
+.DS_Store
