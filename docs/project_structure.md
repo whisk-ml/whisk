@@ -56,7 +56,12 @@ A project created with [`whisk create`](cli_reference.html#whisk-create) generat
     ├── venv                  <- The Python3 virtual environment for the project.
     │
     └── whisk_commands        <- Add custom `whisk` CLI commands and override existing ones.
-        │                        Powered by https://click.palletsprojects.com/en/7.x/.
-        └── app.py
+    │   │                        Powered by https://click.palletsprojects.com/en/7.x/.
+    │    └── app.py
+    │
+    ├── .envrc                <- A default file to auto load/unload environment variables and the venv when entering and
+    │                            exiting the directory via direnv. See https://github.com/direnv/direnv.
+    │                             
+    └── .gitignore            <- A .gitignore configured for whisk with sensible defaults
 
 This structure is inspired by [Cookiecutter Data Science](https://github.com/drivendata/cookiecutter-data-science) and [Cookiecutter PyPackage](https://github.com/audreyr/cookiecutter-pypackage).

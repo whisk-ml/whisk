@@ -1,4 +1,4 @@
-# whisk documentation
+# whisk documentation home
 
 __whisk is an open-source ML project framework that makes collaboration, reproducibility, and deployment "just work".__ It combines a suite of lightweight tools with a logical and flexible project structure. Release your model to the world without a software engineer.
 
@@ -126,7 +126,7 @@ The [whisk-ml](https://github.com/whisk-ml) GitHub org contains example whisk pr
 ```eval_rst
 .. toctree::
    :maxdepth: 1
-   
+
    index
    key_concepts
    installation
