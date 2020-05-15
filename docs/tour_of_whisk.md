@@ -85,6 +85,8 @@ $ pip install dist/demo-0.1.0.tar.gz
 
 After installing the package, another user can invoke the model via the CLI or by importing the `demo` module like we did earlier. You can modify the package metadata (author, description, etc) and list the package dependencies in `setup.py`.
 
+Learn more about packaging a model in our [packaging guide](packaging.html).
+
 #### Deploy a web service
 
 Deploy the model inference web service to Heroku ([a free account](https://signup.heroku.com/) works fine with this demo):
@@ -92,6 +94,8 @@ Deploy the model inference web service to Heroku ([a free account](https://signu
 ```
 $ whisk app create demo-[INSERT YOUR NAME]
 ```
+
+Learn more about [deploying a model to Heroku](heroku.html).
 
 ### What next?
 

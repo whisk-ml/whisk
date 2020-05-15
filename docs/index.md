@@ -25,7 +25,7 @@ The commands above do the following:
 * [Generate the project directory structure](project_structure.html)
 * Activate the project's venv
 
-__To try out all of the features, check out [the quick tour of whisk](tour_of_whisk.html).__
+__To try out all of the features, continue the [quick tour of whisk →](tour_of_whisk.html#try-the-sample-model).__
 
 ## Examples
 
