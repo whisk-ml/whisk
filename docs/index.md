@@ -132,6 +132,7 @@ The [whisk-ml](https://github.com/whisk-ml) GitHub org contains example whisk pr
    project_structure
    cli_reference
    heroku
+   packaging
    modules
    changelog
    contributing

@@ -101,4 +101,14 @@ Run a notebook from the command line with the given `RELATIVE_PATH`. Example:
 
 ### whisk package dist
 
-Builds a source distribution of the project.
+Builds a source distribution of the project. Example:
+
+    $ whisk package dist
+    Python Package created in /Users/dlite/projects/whisk_examples/demo/dist:
+    demo-0.1.0.tar.gz
+
+To install:
+
+    $ pip install dist/demo-0.1.0.tar.gz
+
+See the [packaging](packaging.html) guide for more information on packaging your code.

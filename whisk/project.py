@@ -40,16 +40,18 @@ class Project:
         Location of the project's artifacts directory as a pathlib.Path.
         This is derived from `path` if not provided.
         """
+        self.data_dir = None
+        self.commands_dir = None
         if self.in_project():
             self.data_dir = self.path / "data"
             """
             Location of the project's data directory as a pathlib.Path.
-            This is only set if with a valid whisk project.
+            Returns `None` if not within a whisk project.
             """
             self.commands_dir = self.path / "whisk_commands"
             """
             Location of the project's whisk commands directory as a pathlib.Path.
-            This is only set if with a valid whisk project.
+            Returns `None` if not within a whisk project.
             """
 
     def validate_in_project(self):
