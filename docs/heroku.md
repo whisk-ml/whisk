@@ -1,6 +1,6 @@
 # Heroku Deployment
 
-[Heroku](https://heroku.com) is a cloud platform as a service supporting several programming languages, [including Python](https://devcenter.heroku.com/categories/python-support). Heroku is the default option for model deployment as a web service for whisk. In most cases, Heroku is typically free for proof-of-concept models and a low-cost, less complex approach compared to solutions like AWS Sagemaker.
+[Heroku](https://heroku.com) is a cloud platform as a service supporting several programming languages, [including Python](https://devcenter.heroku.com/categories/python-support). Heroku is the default option for model deployment as a web service for whisk. In most cases, Heroku is free for proof-of-concept models and a low-cost, less complex approach compared to solutions like AWS Sagemaker in the long-run.
 
 To deploy the web service residing in the `app/` directory to Heroku, type [`whisk app create [NAME OF THE HEROKU APP]`](cli_reference.html#whisk-app-create).
 
