@@ -66,6 +66,7 @@ instance/
 docs/_build/
 docs/modules.rst
 docs/whisk*
+docs/autoapi
 
 # PyBuilder
 target/
