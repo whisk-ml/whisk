@@ -130,8 +130,8 @@ The [whisk-ml](https://github.com/whisk-ml) GitHub org contains example whisk pr
    key_concepts
    installation
    project_structure
-   usage
    cli_reference
+   heroku
    modules
    changelog
    contributing
