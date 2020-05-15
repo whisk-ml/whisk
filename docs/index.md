@@ -126,7 +126,8 @@ The [whisk-ml](https://github.com/whisk-ml) GitHub org contains example whisk pr
 ```eval_rst
 .. toctree::
    :maxdepth: 1
-
+   
+   index
    key_concepts
    installation
    project_structure
