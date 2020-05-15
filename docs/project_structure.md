@@ -41,12 +41,12 @@ A project created with [`whisk create`](cli_reference.html#whisk-create) generat
     │       ├── data          <- Scripts to download or generate data.
     │       ├── features      <- Scripts to turn raw data into features for modeling.
     │       └── models        <- Scripts to train models and then use trained models to make predictions.
-    │           │              
-    └           └── model.py  <- Scaffolded model class for use with whisk.
+    │       │   │              
+    │       │   └── model.py  <- Scaffolded model class for use with whisk.
     │       └── visualization <- Scripts to create exploratory and results oriented visualizations.
     │
     ├── tests                 <- Tests to ensure the project works as expected.
-    │                            See https://docs.pytest.org/en/latest/.
+    │   │                        See https://docs.pytest.org/en/latest/.
     │   ├── test_cli.py
     │   └── test_model.py
     │
@@ -55,9 +55,9 @@ A project created with [`whisk create`](cli_reference.html#whisk-create) generat
     │
     ├── venv                  <- The Python3 virtual environment for the project.
     │
-    └── whisk_commands        <- Add custom `whisk` CLI commands and override existing ones.
+    ├── whisk_commands        <- Add custom `whisk` CLI commands and override existing ones.
     │   │                        Powered by https://click.palletsprojects.com/en/7.x/.
-    │    └── app.py
+    │   └── app.py
     │
     ├── .envrc                <- A default file to auto load/unload environment variables and the venv when entering and
     │                            exiting the directory via direnv. See https://github.com/direnv/direnv.
