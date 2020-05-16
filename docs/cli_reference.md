@@ -81,6 +81,14 @@ Creates an S3 bucket to store data. If no bucket name is provided, the bucket na
 
 Deletes the existing S3 bucket used to store data. If no bucket name is provided, the bucket name is generated from the project directory name.
 
+### whisk s3 make-public
+
+Creates a public read-only policy for the S3 bucket. This grants anonymous users read-only access to objects within the bucket.
+
+### whisk s3 delete-policy
+
+Deletes the policy associated with the S3 bucket.
+
 ### whisk dvc remote-add
 
 Adds a DVC S3 remote as the default remote using the provided S3 bucket. Run [`whisk s3 create`](#whisk-s3-create) prior to adding the remote.
