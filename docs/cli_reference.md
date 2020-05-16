@@ -67,7 +67,7 @@ Deploys the Flask web service to Heroku. Requires a `name` command argument:
 
     $ whisk app create [NAME OF THE HEROKU APP]
 
-The name must be unique on Heroku.
+The name must be unique on Heroku. See the [API docs](autoapi/whisk/cli/commands/project/app/index.html#whisk.cli.commands.project.app.create) for details on the steps performed to create an app on Heroku.
 
 ### whisk app destroy
 

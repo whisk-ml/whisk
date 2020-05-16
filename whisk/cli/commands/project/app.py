@@ -13,16 +13,19 @@ def start():
     call("honcho -f app/Procfile.dev start", shell=True)
 
 @cli.command()
-def create(name):
-    """
-    Create a Heroku app for the web service.
-    """
-
-@cli.command()
 @click.argument("name")
 def create(name):
     """
-    Create a Heroku app for the web service with the given NAME.
+    Create a Heroku app for the web service with the given NAME. The NAME must be unique across all Heroku apps.
+
+    A Heroku deploy performs the following steps:
+
+    * Ensures there are no unstaged commits before creating the app. If there are uncommited changes the command exists with a warning.\n
+    * Creates the Heroku app\n
+    * Adds the `Multi-Procfile buildpack <https://github.com/heroku/heroku-buildpack-multi-procfile />`_ to access the Procfile within the ``app/`` folder of the project.\n
+    * Adds the `Python buildpack <https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-python />`_.\n
+    * Sets a `PROCFILE` config var to ``app/Procfile``.\n
+    * Pushes the git repo to Heroku.\n
     """
     if git.has_unstaged_changes():
         click.echo("This project has uncommitted changes.\n\nPlease add and commit the files to the Git repo, then retry:\n\ngit add .\ngit commit -m 'First Commit'\n")
