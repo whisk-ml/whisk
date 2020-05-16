@@ -46,6 +46,7 @@ The [whisk-ml](https://github.com/whisk-ml) GitHub org contains example whisk pr
    installation
    project_structure
    cli_reference
+   dvc
    heroku
    packaging
    modules
