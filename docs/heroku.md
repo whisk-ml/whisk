@@ -12,6 +12,16 @@ Your project may require a couple of slight modifications to successfully deploy
 
 Heroku has a [maximum slug size of 500 MB](https://devcenter.heroku.com/articles/slug-compiler#slug-size) (after compression). If you project contains large dependencies (like Tensorflow), you could exceed this limit.
 
+If your app exceeds the maximum slug size, try using cascading `requirements.txt` files similar to this [Stack Overflow answer](https://stackoverflow.com/a/20720019/1234395). For example:
+
+```
+|-- requirements
+|   |-- common.txt   <- Contains requirements common to all environments.
+|   |-- dev.txt      <- Specifies dev-only requirements and requires common.txt.
+|   `-- prod.txt     <- Specifies Heroku-only requirements and requires common.txt.
+`-- requirements.txt <- Requires requirements/prod.txt as Heroku looks for this file.
+```
+
 ### Tensorflow
 
 The Tensorflow library is greater than 500 MB and exceeds the Heroku slug size limit by itself. Use `tensorflow-cpu` as it consumes < 150 MB of disk space. Heroku also does not offer GPUs so there is loss in functionality.
