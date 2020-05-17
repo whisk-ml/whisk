@@ -3,6 +3,7 @@ from whisk.project import Project
 import whisk.git as git
 import os
 import subprocess
+from pathlib import Path
 
 NOTEBOOK_EXAMPLE_PATH = "notebooks/getting_started.ipynb"
 
@@ -42,6 +43,10 @@ def exec_setup(nbenv):
         exec("Making initial Git commit", "git commit -m 'Initial project structure' --author=\"Whisk <whisk@whisk-ml.org>\" > /dev/null")
 
 def set_example_notebook_kernel(nbenv):
+    nb_file = Path(NOTEBOOK_EXAMPLE_PATH)
+    if not nb_file.is_file():
+        print("Getting started notebook does not exist @ {}. Not applying venv.".format(nb_file))
+        return
     # Read in the file
     with open(NOTEBOOK_EXAMPLE_PATH, 'r') as file :
       filedata = file.read()
