@@ -7,6 +7,7 @@
 
 ### whisk project requirements
 ipykernel # creating the `{{cookiecutter.project_name}}` kernel
+nbconvert # run notebooks from the command line
 python-dotenv # access env vars defined in a .env file from Python code
 dvc # Data Version Control (DVC) for versioning data and pipelines
 boto3 # AWS API for S3 bucket management needed for DVC remotes
