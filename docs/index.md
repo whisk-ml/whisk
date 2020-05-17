@@ -49,6 +49,7 @@ The [whisk-ml](https://github.com/whisk-ml) GitHub org contains example whisk pr
    dvc
    heroku
    packaging
+   guides
    modules
    changelog
    contributing

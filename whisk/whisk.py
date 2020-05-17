@@ -17,6 +17,15 @@ def root_module_dir():
 def cookiecutter_template_dir():
     return str(root_module_dir() / 'template/')
 
+def project_name_to_slug(project_name):
+    """
+    Converts a raw project name to a slug:
+
+    * Makes all letters lowercase
+    * Replaces spaces with underscores
+    """
+    return project_name.lower().replace(' ', '_')
+
 def create(project_name, output_dir=".", setup=None, force=False):
     """
     Creates a whisk project.
@@ -24,7 +33,7 @@ def create(project_name, output_dir=".", setup=None, force=False):
     Parameters
     ----------
     project_name : str
-        Name of the directory to create for the project.
+        Name of the directory to create for the project. This is converted to a slug via :func:`project_name_to_slug`.
 
     output_dir : str, optional
         Path to create the directory. Default is the current working directory.
@@ -38,10 +47,13 @@ def create(project_name, output_dir=".", setup=None, force=False):
     # Locks to a specific version as earlier and later versions of whisk could expect a different
     # template structure.
     whisk_version = "whisk=={}".format(whisk.__version__)
+
+    project_name_slug = project_name_to_slug(project_name)
+
     # `whisk_dependency` is more flexible (for example, specifying a local install)
     # than `whisk_install_requires` and is used in testing to require the local version of whisk.
     extra_content = {
-        "project_name": project_name,
+        "project_name": project_name_slug,
         # Added to the project's requirements.txt
         "whisk_dependency": whisk_version,
         # Added to the project's setup.py file

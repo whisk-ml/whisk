@@ -26,8 +26,8 @@ class Project:
         """The top-level project directory (str)"""
         self.path = Path(self.dir)
         """The top-level project directory as a pathlib.Path"""
-        self.name = self.path.stem
-        """Name of the project derived from the top-level directory (str)"""
+        self.name = self.name_from_src_dir(self.path / "src")
+        """Name of the project derived from the src/<project_name> directory (str)"""
         self.module_dir = module_dir
         """
         Location of the project's module directory as a pathlib.Path.
@@ -53,6 +53,22 @@ class Project:
             Location of the project's whisk commands directory as a pathlib.Path.
             Returns `None` if not within a whisk project.
             """
+
+    def name_from_src_dir(self, src_dir):
+        """
+        Derives the project name from the first child directory in the ``src/``
+        directory that contains an ``__init__.py`` file.
+
+        Parameters
+        ----------
+        src_dir : pathlib.Path
+            Path object referencing the project ``src/`` directory.
+        """
+
+        src_children = sorted(src_dir.glob("*/__init__.py"))
+        if len(src_children) == 0:
+            return None
+        return src_children[0].parent.stem
 
     def validate_in_project(self):
         """
