@@ -2,7 +2,7 @@
 
 __author__ = """Derek Haynes"""
 __email__ = 'derek@dlite.cc'
-__version__ = '0.1.28'
+__version__ = '0.1.29'
 
 project = None
 """
