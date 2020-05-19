@@ -22,7 +22,7 @@ def exec(desc,cmd):
     If the exit code is nonzero, raises a `SystemExit` execption.
     """
     logger.info(desc+"...")
-    # exit_code = subprocess.call(cmd, shell=True, stdout=sys.stdout, stderr=sys.stderr)
+    completed_process = None
     try:
         completed_process = subprocess.run(cmd, shell=True, check=True, text=True, stdout=PIPE, stderr=PIPE)
         logger.info("✓")
