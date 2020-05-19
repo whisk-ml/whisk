@@ -24,7 +24,10 @@ def exec(desc,cmd):
     logger.info(desc+"...")
     completed_process = None
     try:
-        completed_process = subprocess.run(cmd, shell=True, check=True, text=True, stdout=PIPE, stderr=PIPE)
+        # universal_newlines is the same as `text`. text was added in 3.7:
+        # Changed in version 3.7: Added the text parameter, as a more understandable alias of universal_newlines.
+        # Added the capture_output parameter.
+        completed_process = subprocess.run(cmd, shell=True, check=True, universal_newlines=True, stdout=PIPE, stderr=PIPE)
         logger.info("✓")
     except subprocess.CalledProcessError:
         logger.info("⚠️  (exit code= {})".format(completed_process.returncode))
