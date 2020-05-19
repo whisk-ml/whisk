@@ -11,3 +11,8 @@ Changelog
 ------------------
 
 * Deriving the project name from `src/<project name>` vs. the top-level directory name.
+
+0.1.30 (2020-05-19)
+------------------
+
+* Added logging and updated `whisk create` and `whisk setup` output. (#25)
