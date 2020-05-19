@@ -47,6 +47,8 @@ def configure_logger(stream_level='DEBUG', log_file=None):
     # Create a stream handler
     stream_handler = logging.StreamHandler(stream=sys.stdout)
     stream_handler.setLevel(log_level)
+    # Doesn't call the line below so that when running via tty there's less info for an end-user to parse thru.
+    # This is esc. applicable for create/setup.
     # stream_handler.setFormatter(log_formatter)
     logger.addHandler(stream_handler)
 
