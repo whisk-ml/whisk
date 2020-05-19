@@ -6,6 +6,9 @@ from os.path import dirname, realpath
 # https://docs.python.org/3/library/pathlib.html
 # Object-oriented filesystem paths
 from pathlib import Path
+import logging
+
+logger = logging.getLogger(__name__)
 
 def root_module_dir():
     """
@@ -26,7 +29,7 @@ def project_name_to_slug(project_name):
     """
     return project_name.lower().replace(' ', '_')
 
-def create(project_name, output_dir=".", setup=None, force=False):
+def create(project_name, output_dir=".", force=False):
     """
     Creates a whisk project.
 
@@ -37,9 +40,6 @@ def create(project_name, output_dir=".", setup=None, force=False):
 
     output_dir : str, optional
         Path to create the directory. Default is the current working directory.
-
-    setup : bool, optional
-        Whether to run the post-creation setup command. By default this is `True`. If `False`, only the directory structure is created.
 
     force : bool, optional
         Recreates the project directory if it exists. Default is `False`.
@@ -59,9 +59,8 @@ def create(project_name, output_dir=".", setup=None, force=False):
         # Added to the project's setup.py file
         "whisk_install_requires": whisk_version
     }
-    if setup is not None:
-        extra_content["setup"] = setup
-    cookiecutter(cookiecutter_template_dir(),
+    logger.debug("Creating whisk project with extra_content={}".format(extra_content))
+    return cookiecutter(cookiecutter_template_dir(),
                 no_input=True,
                 overwrite_if_exists=force,
                 output_dir=output_dir,

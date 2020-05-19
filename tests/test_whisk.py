@@ -50,5 +50,5 @@ def test_create(tmpdir):
     temp = tmpdir.mkdir('whisk-project')
     project_name = "project_name"
     out_dir = Path(temp).resolve()
-    whisk.create(project_name, output_dir=out_dir, setup=False)
+    whisk.create(project_name, output_dir=out_dir)
     shutil.rmtree(out_dir)

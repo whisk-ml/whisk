@@ -5,7 +5,8 @@ import shutil
 from pathlib import Path
 from cookiecutter import main
 import whisk
-from whisk.whisk import cookiecutter_template_dir
+from whisk.whisk import create
+import whisk.setup
 
 args = {
         'project_name': 'project_name',
@@ -33,28 +34,22 @@ def default_baked_project(tmpdir_factory, request):
     pytest.param = request.param
     # TODO - handle via a command-line option
     # pytest.param = {"setup": False}
+    setup = True
 
     pytest.param = {
         "whisk_dependency": "-e {}".format(os.getcwd())
     }
 
-    main.cookiecutter(
-        cookiecutter_template_dir(),
-        no_input=True,
-        extra_context=pytest.param,
-        output_dir=out_dir
-    )
+    project_name = pytest.param.get('project_name') or 'project_name'
+    proj_dir = create(project_name, output_dir=out_dir)
+    proj = Path(proj_dir)
+    if setup:
+        whisk.setup.setup(proj)
 
-    pn = pytest.param.get('project_name') or 'project_name'
-
-    # project name gets converted to lower case on Linux but not Mac
-    pn = system_check(pn)
-
-    proj = out_dir / pn
     request.cls.path = proj
     yield
 
     # cleanup after
     shutil.rmtree(out_dir)
     # jupyter kernelspec list
-    os.system("jupyter kernelspec uninstall {} -f".format(pn))
+    os.system("jupyter kernelspec uninstall {} -f".format(project_name))

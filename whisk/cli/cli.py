@@ -3,14 +3,28 @@ Console script for whisk. The structure is based on `Click complex example app <
 """
 import sys
 import click
-from whisk import whisk
-from whisk.project import Project
+import whisk
 from whisk.cli.whisk_multi_command import WhiskMultiCommand
+from whisk.log import configure_logger
+import cookiecutter.log
+import logging
 
 @click.command(cls=WhiskMultiCommand)
-def cli():
+@click.option('--debug/--no-debug', default=False, help="Enable verbose logging.")
+@click.option('--log-file', default=None, help="Log output to a file.")
+@click.pass_context
+def cli(ctx, debug, log_file):
     """Entry point for the whisk cli."""
-    pass
+    # ensure that ctx.obj exists and is a dict (in case `cli()` is called
+    # by means other than the `if` block below)
+    ctx.ensure_object(dict)
+    ctx.obj['DEBUG'] = debug
+    ctx.obj['LOG_FILE'] = log_file
+    configure_logger(stream_level='DEBUG' if debug else 'INFO', log_file=log_file)
+    cookiecutter.log.configure_logger(stream_level='DEBUG' if debug else 'INFO', debug_file=log_file)
+    logger = logging.getLogger(__name__)
+    logger.debug("whisk version=%s",whisk.__version__)
+    logger.debug("whisk module location=%s",whisk)
 
 if __name__ == "__main__":
     cli()
