@@ -30,8 +30,9 @@ def exec(desc,cmd):
         logger.info("⚠️  (exit code= {})".format(completed_process.returncode))
         raise SystemExit("💣 Aborting install. An error occurred running the install script.")
     finally:
-        log_subprocess_output(logger.info,completed_process.stdout)
-        log_subprocess_output(logger.error,completed_process.stderr)
+        if completed_process:
+            log_subprocess_output(logger.info,completed_process.stdout)
+            log_subprocess_output(logger.error,completed_process.stderr)
 
 
 def exec_setup(nbenv):
