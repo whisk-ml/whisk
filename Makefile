@@ -103,7 +103,7 @@ create-demo: ## creates a demo whisk app for testing. destroys the existing one.
 	# Manually deleting the directory.
 	rm -Rf $(FULL_PROJECT_DEMO_DIR)
 	rm -f ~/Desktop/whisk.log
-	whisk --debug --log_file ~/Desktop/whisk.log create -o $(PROJECT_DEMO_DIR) $(PROJECT_DEMO_NAME)
+	whisk --log-file ~/Desktop/whisk.log create -o $(PROJECT_DEMO_DIR) $(PROJECT_DEMO_NAME)
 	cd $(FULL_PROJECT_DEMO_DIR)
 	$(FULL_PROJECT_DEMO_DIR)/venv/bin/pip uninstall -y whisk > /dev/null
 	$(FULL_PROJECT_DEMO_DIR)/venv/bin/pip install -e ~/projects/whisk > /dev/null

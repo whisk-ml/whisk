@@ -6,11 +6,12 @@ import click
 import whisk
 from whisk.cli.whisk_multi_command import WhiskMultiCommand
 from whisk.log import configure_logger
+import cookiecutter.log
 import logging
 
 @click.command(cls=WhiskMultiCommand)
 @click.option('--debug/--no-debug', default=False, help="Enable verbose logging.")
-@click.option('--log_file', default=None, help="Log output to a file.")
+@click.option('--log-file', default=None, help="Log output to a file.")
 @click.pass_context
 def cli(ctx, debug, log_file):
     """Entry point for the whisk cli."""
@@ -20,6 +21,7 @@ def cli(ctx, debug, log_file):
     ctx.obj['DEBUG'] = debug
     ctx.obj['LOG_FILE'] = log_file
     configure_logger(stream_level='DEBUG' if debug else 'INFO', log_file=log_file)
+    cookiecutter.log.configure_logger(stream_level='DEBUG' if debug else 'INFO', debug_file=log_file)
     logger = logging.getLogger(__name__)
     logger.debug("whisk version=%s",whisk.__version__)
     logger.debug("whisk module location=%s",whisk)
