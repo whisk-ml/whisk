@@ -50,6 +50,7 @@ The [whisk-ml](https://github.com/whisk-ml) GitHub org contains example whisk pr
    heroku
    packaging
    guides
+   troubleshooting
    modules
    changelog
    contributing

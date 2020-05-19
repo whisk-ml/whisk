@@ -29,7 +29,7 @@ def configure_logger(stream_level='DEBUG', log_file=None):
     logger.setLevel(logging.DEBUG)
 
     # Remove all attached handlers, in case there was
-    # a logger with using the name 'whisk'
+    # a logger using the name 'whisk'
     del logger.handlers[:]
 
     # Create a file handler if a log file is provided
@@ -47,7 +47,9 @@ def configure_logger(stream_level='DEBUG', log_file=None):
     # Create a stream handler
     stream_handler = logging.StreamHandler(stream=sys.stdout)
     stream_handler.setLevel(log_level)
-    stream_handler.setFormatter(log_formatter)
+    # Doesn't call the line below so that when running via tty there's less info for an end-user to parse thru.
+    # This is esc. applicable for create/setup.
+    # stream_handler.setFormatter(log_formatter)
     logger.addHandler(stream_handler)
 
     return logger

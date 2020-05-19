@@ -8,6 +8,8 @@ To obtain a list of commands and command groups, type `whisk --help`. You'll see
     Usage: whisk [OPTIONS] COMMAND [ARGS]...
 
     Options:
+      --debug / --no-debug  Enable verbose logging.
+      --log-file TEXT       Log output to a file.
       --help  Show this message and exit.
 
     Commands:
@@ -46,6 +48,15 @@ To get help on a specific command, append `--help` to the command. For example:
 
       -o, --output_dir TEXT  The parent directory that will contain the project.
       --help                 Show this message and exit.
+
+### Logging
+
+The `whisk` command has global `--debug / --no-debug` and `--log-file` options to generate debug information. For example:
+
+    $ whisk --debug --log-file whisk.log create demo
+    $ whisk --debug --log-file whisk.log app start
+
+Add these global options immediately after the `whisk` keyword and prior to the command you wish to execute.
 
 ### whisk create
 
