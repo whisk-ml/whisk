@@ -17,4 +17,3 @@ def cli(dir):
     See :func:`whisk.setup.setup` for the full list of steps that are performed.
     """
     whisk.setup.setup(dir)
-    logger.info("Setup completed ✓.")

@@ -8,6 +8,7 @@ from whisk.cli.whisk_multi_command import WhiskMultiCommand
 from whisk.log import configure_logger
 import cookiecutter.log
 import logging
+import platform
 
 @click.command(cls=WhiskMultiCommand)
 @click.option('--debug/--no-debug', default=False, help="Enable verbose logging.")
@@ -25,6 +26,9 @@ def cli(ctx, debug, log_file):
     logger = logging.getLogger(__name__)
     logger.debug("whisk version=%s",whisk.__version__)
     logger.debug("whisk module location=%s",whisk)
+    logger.debug("Platform: %s", platform.platform())
+    logger.debug("Python Version: %s", platform.python_version())
+    logger.debug("Python executable: %s", sys.executable)
 
 if __name__ == "__main__":
     cli()

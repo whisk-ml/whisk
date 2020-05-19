@@ -5,48 +5,51 @@ import os
 import subprocess
 from pathlib import Path
 import logging
-
+import sys
 from subprocess import PIPE, STDOUT
 
 logger = logging.getLogger(__name__)
 
 NOTEBOOK_EXAMPLE_PATH = "notebooks/getting_started.ipynb"
 
-def log_subprocess_output(logger_with_level,log_lines):
+def log_subprocess_output(logger_with_level,log_lines, tree=True):
+    tree_text = "|   └── "
+    if not tree:
+        tree_text = ""
     for line in log_lines.splitlines(): # b'\n'-separated lines
-        logger_with_level(line)
+        logger_with_level(tree_text+line)
 
 def exec(desc,cmd):
     """
     Executes the `cmd`, and logger.infos `desc` prior to execution.
     If the exit code is nonzero, raises a `SystemExit` execption.
     """
-    logger.info(desc+"...")
+    logger.info("│\n├── "+desc+"...")
     completed_process = None
     try:
         # universal_newlines is the same as `text`. text was added in 3.7:
         # Changed in version 3.7: Added the text parameter, as a more understandable alias of universal_newlines.
         # Added the capture_output parameter.
         completed_process = subprocess.run(cmd, shell=True, check=True, universal_newlines=True, stdout=PIPE, stderr=PIPE)
-        logger.info("✓")
-    except subprocess.CalledProcessError:
-        logger.info("⚠️  (exit code= {})".format(completed_process.returncode))
-        raise SystemExit("💣 Aborting install. An error occurred running the install script.")
-    finally:
-        if completed_process:
-            log_subprocess_output(logger.info,completed_process.stdout)
-            log_subprocess_output(logger.error,completed_process.stderr)
+        log_subprocess_output(logger.info,completed_process.stdout)
+        log_subprocess_output(logger.error,completed_process.stderr)
+        logger.info("|   └── DONE.")
+    except subprocess.CalledProcessError as e:
+        logger.error("|  └── Error executing `%s`.\n       Stack trace:\n\n", cmd, exc_info=True)
+        raise SystemExit("\n###\nSETUP FAILED. See whisk troubleshooting docs for help:\nhttps://whisk.readthedocs.io/en/latest/troubleshooting.html\n###\n")
+
 
 
 def exec_setup(nbenv):
     exec("Setting up venv","python3 -m venv {}/venv".format(os.getcwd()))
-    exec("Installing Python dependencies via pip","venv/bin/pip install -r requirements.txt > /dev/null")
-    logger.info("Initializing the Git repo")
+    exec("Installing Python dependencies via pip  (may take several minutes)","venv/bin/pip install -r requirements.txt > /dev/null")
+    logger.info("│\n├── Initializing the Git repo")
     # Idempotent so just execute
     os.system("git init > /dev/null 2>&1")
+    logger.info("|   └── DONE.")
     # Would rather use --sys-prefix, but not working:
     # https://github.com/jupyter/notebook/issues/4567
-    exec("Setting up venv={} for Jupyter Notebooks".format(nbenv),"venv/bin/python -m ipykernel install --user --name={}".format(nbenv))
+    exec("Setting up kernel={} for Jupyter Notebooks".format(nbenv),"venv/bin/python -m ipykernel install --user --name={}".format(nbenv))
     set_example_notebook_kernel(nbenv)
     # direnv will fail if not installed
     os.system("cp .envrc.example .envrc")
@@ -93,4 +96,13 @@ def setup(dir):
     with cd(dir):
         logger.debug("cwd={}".format(os.getcwd()))
         exec_setup(nbenv)
-    logger.info("Install completed ✓.")
+    logger.info("│\n└── Setup completed.")
+    logger.info("\n###\nYOUR PROJECT IS READY. See the docs for help: https://whisk.readthedocs.io\n")
+    logger.info("Get started:\n")
+    if os.getcwd() != dir:
+        logger.info("cd %s", dir)
+    logger.info("source venv/bin/activate")
+    logger.info("###\n")
+    reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'], universal_newlines=True)
+    logger.debug("pip freeze output:")
+    log_subprocess_output(logger.debug,reqs, tree=False)

@@ -60,8 +60,12 @@ def create(project_name, output_dir=".", force=False):
         "whisk_install_requires": whisk_version
     }
     logger.debug("Creating whisk project with extra_content={}".format(extra_content))
-    return cookiecutter(cookiecutter_template_dir(),
+    logger.info("├── Creating project directory structure...")
+    res = cookiecutter(cookiecutter_template_dir(),
                 no_input=True,
                 overwrite_if_exists=force,
                 output_dir=output_dir,
                 extra_context=extra_content)
+    logger.info("|   ├── Project created in %s", res)
+    logger.info("|   └── DONE.")
+    return res
