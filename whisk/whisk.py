@@ -33,7 +33,7 @@ def to_slug(str):
     return str.lower().replace(' ', '_')
 
 
-def create(project_name, output_dir=".", force=False,
+def create(dir, force=False,
            module_name=None,
            dependency=f"whisk=={whisk.__version__}",
            install_requires=f"whisk=={whisk.__version__}"):
@@ -42,16 +42,13 @@ def create(project_name, output_dir=".", force=False,
 
     Parameters
     ----------
-    project_name : str
-        Name of the directory to create for the project. This is converted to a
-        slug via :func:`project_name_to_slug`.
+    dir : str
+        Path of the directory to create the project. The directory name is
+        converted to a slug via :func:`project_name_to_slug`.
 
     module_name : str, optional
         Name of the module used when importing the project. This is converted to a
         slug via :func:`project_name_to_slug`. Default is the ``project_name``.
-
-    output_dir : str, optional
-        Path to create the directory. Default is the current working directory.
 
     force : bool, optional
         Recreates the project directory if it exists. Default is `False`.
@@ -69,8 +66,12 @@ def create(project_name, output_dir=".", force=False,
         different template structure and break functionality.
     """
 
-    project_name_slug = to_slug(project_name)
+    path = Path(dir).absolute()
+    logger.debug(f"Creating project in {path}.")
+    project_name = path.stem
+    output_dir = path.parent
 
+    project_name_slug = to_slug(project_name)
     if module_name:
         module_name_slug = to_slug(module_name)
     else:

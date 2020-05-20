@@ -119,6 +119,7 @@ def exec_setup(project):
              "git commit -m 'Initial project structure' --author=\"Whisk <whisk@whisk-ml.org>\" > /dev/null")
 
 def notebook_exists(notebook_path):
+    logger.debug("Checking if notebook exists at path={}".format(notebook_path))
     nb_file = Path(NOTEBOOK_EXAMPLE_PATH)
     return nb_file.is_file()
 
@@ -159,7 +160,7 @@ Get started:
         # instruct the user to cd into the project.
         logger.info("cd %s", dir)
     logger.info("source venv/bin/activate")
-    if notebook_exists(NOTEBOOK_EXAMPLE_PATH):
+    if notebook_exists(Path(dir) / NOTEBOOK_EXAMPLE_PATH):
         logger.info(f"jupyter-notebook {NOTEBOOK_EXAMPLE_PATH}")
     logger.info("###\n")
 
