@@ -12,7 +12,7 @@ setup(
     # You likely need to list more dependencies for your model package.
     # For example: your model framework (Scikit, Torch, etc), numpy, Pandas, etc.
     #
-    # See https://whisk.readthedocs.io/en/latest/packaging.html for help on packaging your model.
+    # See https://docs.whisk-ml.org/en/latest/packaging.html for help on packaging your model.
     install_requires=[
         '{{cookiecutter.whisk_install_requires}}'
     ],

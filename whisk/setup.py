@@ -68,7 +68,7 @@ def exec(desc, cmd):
 
 ###
 SETUP FAILED. See whisk troubleshooting docs for help:
-https://whisk.readthedocs.io/en/latest/troubleshooting.html
+https://docs.whisk-ml.org/en/latest/troubleshooting.html
 ###
 
         """)
@@ -151,7 +151,7 @@ def log_success(dir):
     logger.info("""
 
 ###
-YOUR PROJECT IS READY. See the docs for help: https://whisk.readthedocs.io
+YOUR PROJECT IS READY. See the docs for help: https://docs.whisk-ml.org
 
 Get started:
     """)

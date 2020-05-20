@@ -26,9 +26,9 @@ If DVC is used, download the latest data files: `dvc pull`.
 The steps above change to the project directory, install whisk, and setup the project environment.
 
 To learn more about whisk, here are a few helpful doc pages:
-* [A Quick Tour of whisk](https://whisk.readthedocs.io/en/latest/tour_of_whisk.html)
-* [Key Concepts](https://whisk.readthedocs.io/en/latest/key_concepts.html)
-* [Project Structure](https://whisk.readthedocs.io/en/latest/project_structure.html)
+* [A Quick Tour of whisk](https://docs.whisk-ml.org.io/en/latest/tour_of_whisk.html)
+* [Key Concepts](https://docs.whisk-ml.org.io/en/latest/key_concepts.html)
+* [Project Structure](https://docs.whisk-ml.org.io/en/latest/project_structure.html)
 
 --------
 
