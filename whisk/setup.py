@@ -95,16 +95,18 @@ def exec_setup(nbenv):
         exec("Making initial Git commit",
              "git commit -m 'Initial project structure' --author=\"Whisk <whisk@whisk-ml.org>\" > /dev/null")
 
+def notebook_exists(notebook_path):
+    nb_file = Path(NOTEBOOK_EXAMPLE_PATH)
+    return nb_file.is_file()
 
 def set_example_notebook_kernel(nbenv):
     """
     Updates the :attr:`NOTEBOOK_EXAMPLE_PATH` notebook kernel to use
     the kernel with name ``nbenv``.
     """
-    nb_file = Path(NOTEBOOK_EXAMPLE_PATH)
-    if not nb_file.is_file():
+    if not notebook_exists(NOTEBOOK_EXAMPLE_PATH):
         logger.info(
-            f"Getting started notebook does not exist @ {nb_file}. Not applying venv."
+            f"Getting started notebook does not exist @ {NOTEBOOK_EXAMPLE_PATH}. Not applying venv."
         )
         return
     # Read in the file
@@ -134,6 +136,8 @@ Get started:
         # instruct the user to cd into the project.
         logger.info("cd %s", dir)
     logger.info("source venv/bin/activate")
+    if notebook_exists(NOTEBOOK_EXAMPLE_PATH):
+        logger.info(f"jupyter-notebook {NOTEBOOK_EXAMPLE_PATH}")
     logger.info("###\n")
 
 
