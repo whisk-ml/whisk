@@ -41,7 +41,7 @@ def default_baked_project(tmpdir_factory, request):
     }
 
     project_name = pytest.param.get('project_name') or 'project_name'
-    proj_dir = create(project_name, output_dir=out_dir)
+    proj_dir = create(out_dir / project_name)
     proj = Path(proj_dir)
     if setup:
         whisk.setup.setup(proj)
