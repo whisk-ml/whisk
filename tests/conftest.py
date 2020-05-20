@@ -33,11 +33,11 @@ def default_baked_project(tmpdir_factory, request):
 
     pytest.param = request.param
     # TODO - handle via a command-line option
-    # pytest.param = {"setup": False}
     setup = True
 
     pytest.param = {
-        "whisk_dependency": "-e {}".format(os.getcwd())
+        "whisk_dependency": "-e {}".format(os.getcwd()),
+        "setup": setup
     }
 
     project_name = pytest.param.get('project_name') or 'project_name'

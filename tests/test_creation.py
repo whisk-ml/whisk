@@ -1,9 +1,8 @@
 import os
 import pytest
-import datetime as dt
 from subprocess import check_output, CalledProcessError
-from conftest import system_check
 from pathlib import Path
+import whisk.git as git
 
 
 def no_curlies(filepath):
@@ -23,26 +22,14 @@ def no_curlies(filepath):
     template_strings_in_file = [s in data for s in template_strings]
     return not any(template_strings_in_file)
 
-def changed_files(root_path,ago):
-    """
-    Returns a list of files changed within the `root_path` since `ago`.
-    """
-    now = dt.datetime.now()
-    changed_files = []
-    for root, dirs,files in os.walk(root_path):
-        for fname in files:
-            path = os.path.join(root, fname)
-            st = os.stat(path)
-            mtime = dt.datetime.fromtimestamp(st.st_mtime)
-            if mtime > ago:
-                changed_files.append(path)
-    return changed_files
 
-def paths_to_relative(root,paths):
+def paths_to_relative(root, paths):
     """
-    Converts a list of absolute paths to paths relative to the the root project path.
+    Converts a list of absolute paths to paths relative to the the
+    root project path.
     """
     return list(map(lambda x: str(Path(x).relative_to(root)), paths))
+
 
 @pytest.mark.usefixtures("default_baked_project")
 class TestCookieSetup(object):
@@ -76,42 +63,34 @@ class TestCookieSetup(object):
                 lines = list(map(lambda x: x.strip(), fin.readlines()))
             assert 'pathlib2' in lines
 
-    # def  test_app_starts(self):
-        # Fails:
-        # ModuleNotFoundError: No module named 'flask'
-        # check_output(['venv/bin/inv', 'app.test'], cwd=self.path)
-
-    def test_idempotent_install_command(self):
-        # Running setup is slow, so by default setup=False.
+    def test_idempotent_setup_command(self):
         if not pytest.param.get("setup"):
             return
 
-        ago = dt.datetime.now()
-        check_output(['whisk setup'], cwd=self.path)
-        changed = changed_files(self.path,ago)
-        # Script appears to update some files but unsure if that changes any functionality.
-        # assert len(changed) == 0, "Files were modified: {}".format(changed)
+        check_output(["venv/bin/whisk", "setup"], cwd=self.path)
+        assert not git.has_unstaged_changes(self.path)
 
     def test_notebook_runs(self):
-        # Running setup is slow, so by default setup=False.
         if not pytest.param.get("setup"):
             return
-        check_output(["venv/bin/inv", "notebooks.run", "notebooks/getting_started.ipynb"],
+        check_output(["venv/bin/whisk", "notebook", "run",
+                      "notebooks/getting_started.ipynb"],
                      cwd=self.path)
 
     def test_app_create(self):
         if not pytest.param.get("setup"):
             return
         with pytest.raises(CalledProcessError):
-            # Ensure we can run this task, but it fails because of uncommitted changes.
-            check_output(["venv/bin/inv", "app.create", "APPNAME"],
+            # Ensure we can run this task, but it fails because of
+            # uncommitted changes.
+            check_output(["venv/bin/whisk", "app", "create", "APPNAME"],
                          cwd=self.path)
 
     def test_model_predict(self):
-        # Running setup is slow, so by default setup=False.
+        project = self.path
         if not pytest.param.get("setup"):
             return
-        check_output(["venv/bin/inv", "model.predict", "[[1,2],[3,4]]"],
+        check_output([f"venv/bin/{project.name}", "predict", "[[1,2],[3,4]]"],
                      cwd=self.path)
 
     def test_folders(self):
@@ -142,6 +121,7 @@ class TestCookieSetup(object):
         # venv dir created if setup=True
         if pytest.param.get("setup"):
             expected_dirs.append("venv")
+            expected_dirs.append(".git")
 
         ignored_dirs = [
             str(self.path)
@@ -150,8 +130,9 @@ class TestCookieSetup(object):
         abs_expected_dirs = [str(self.path / d) for d in expected_dirs]
         abs_dirs, _, _ = list(zip(*os.walk(self.path)))
 
-        rel_dirs = paths_to_relative(self.path,abs_dirs)
-        expected_dirs = paths_to_relative(self.path,set(abs_expected_dirs + ignored_dirs))
+        rel_dirs = paths_to_relative(self.path, abs_dirs)
+        expected_dirs = paths_to_relative(self.path,
+                                          set(abs_expected_dirs + ignored_dirs))
 
         missing_dirs = set(expected_dirs) - set(rel_dirs)
-        assert len(missing_dirs)  == 0, "Expected dirs are missing: {}".format(missing_dirs)
+        assert len(missing_dirs) == 0, f"Expected dirs are missing: {missing_dirs}"

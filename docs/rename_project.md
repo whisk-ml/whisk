@@ -1,44 +1,18 @@
-# Renaming a project
+# Renaming the project directory
 
-Follow the following steps if you wish to change the name of a whisk project.
+Follow the following steps if you wish to change the directory name of a whisk project.
 
-## 1. Update setup.py
+If you'd like to change the module name used when calling `import`, running the CLI, or distributing the package, see the [Renaming the module](rename_module.html) guide.
 
-In the project's `setup.py` file, update the `setup` function's `name` argument and the cli command:
+## 1. Change the directory name
 
-```diff
--    name='<old project name>',
-+    name='<new project name>',
-      entry_points={
-        'console_scripts': [
--            '<old project name>=<old project name>.cli.main:cli',
-+            '<new project name>=<new project name>.cli.main:cli',
-        ],
-    },
-```
+Update the name of the project directory:
 
-## 2. Update the src/<project name> directory
+    mv <old project name> <new project name>
 
-Rename the `src/<project name>` directory:
+## 2. Re-create the project virtual environment
 
-    mv src/<old project name> src/<new project name>
+The virtual environment contains hard-coded full paths that need to be updated with the new directory name. Run the following to re-create the virtual environment from within the project directory:
 
-## 3. Find and replace the project name in project files
-
-In your project files, find and replace `<old project name>.` with `<new project name>.`
-
-## 4. Re-install the package
-
-Type the following to re-install the package in editable mode:
-
-    pip install -e .
-
-## 5. Run tests
-
-Run both `pytest` and `tox` to ensure all tests pass with the new project name.
-
-## Extra considerations
-
-### DVC
-
-If your project is using [DVC](dvc.html), you may need to run [`dvc move`](https://dvc.org/doc/command-reference/move) to update the paths of files tracked with DVC.
+    python3 -m venv venv
+    pip install -r requirements.txt

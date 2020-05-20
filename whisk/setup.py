@@ -73,24 +73,47 @@ https://whisk.readthedocs.io/en/latest/troubleshooting.html
 
         """)
 
-
-def exec_setup(nbenv):
-    exec("Setting up venv", "python3 -m venv {}/venv".format(os.getcwd()))
-    exec("Installing Python dependencies via pip  (may take several minutes)",
-         "venv/bin/pip install -r requirements.txt > /dev/null")
+def init_git_repo():
     logger.info(PARENT_TREE_NODE_PREFIX+"Initializing the Git repo")
-    # Idempotent so just execute
+    # Idempotent so ok to execute
     os.system("git init > /dev/null 2>&1")
     logger.info(CHILD_TREE_NODE_PREFIX+"DONE.")
+
+def init_direnv():
+    os.system("cp .envrc.example .envrc")
+    # direnv command will fail if not installed ... just ignore
+    os.system("direnv allow . > /dev/null 2>&1")
+
+def exec_setup(project):
+    """
+    Sets up an environment for the given project.
+
+    Parameters
+    ----------
+    project : whisk.project.Project
+        A whisk project.
+    """
+    exec("Setting up venv", "python3 -m venv {}/venv".format(project.dir))
+
+    exec("Installing Python dependencies via pip  (may take several minutes)",
+         "venv/bin/pip install -r requirements.txt > /dev/null")
+
+    logger.info(PARENT_TREE_NODE_PREFIX+"Checking if a git repo has been initialized...")
+    is_git_repo = project.is_git_repo()
+    logger.info(CHILD_TREE_NODE_PREFIX+str(is_git_repo))
+    if not is_git_repo:
+        init_git_repo()
+
     # Would rather use --sys-prefix, but not working:
     # https://github.com/jupyter/notebook/issues/4567
+    nbenv = project.name
     exec("Setting up kernel={} for Jupyter Notebooks".format(nbenv),
          "venv/bin/python -m ipykernel install --user --name={}".format(nbenv))
     set_example_notebook_kernel(nbenv)
-    # direnv will fail if not installed
-    os.system("cp .envrc.example .envrc")
-    os.system("direnv allow . > /dev/null 2>&1")
-    if git.has_unstaged_changes():
+
+    init_direnv()
+
+    if not is_git_repo and git.has_unstaged_changes():
         exec("Adding files to git", "git add .")
         exec("Making initial Git commit",
              "git commit -m 'Initial project structure' --author=\"Whisk <whisk@whisk-ml.org>\" > /dev/null")
@@ -176,9 +199,8 @@ def setup(dir):
     """
     project = Project(dir)
     project.validate_in_project()
-    nbenv = project.name
     with cd(dir):
         logger.debug("cwd={}".format(os.getcwd()))
-        exec_setup(nbenv)
+        exec_setup(project)
     log_success(dir)
     log_pip_freeze()

@@ -2,6 +2,7 @@ import os
 # https://docs.python.org/3/library/pathlib.html
 # Object-oriented filesystem paths
 from pathlib import Path
+import whisk.git as git
 
 class Project:
     """
@@ -76,6 +77,9 @@ class Project:
         """
         if not self.in_project():
             raise OSError("{} is not a whisk project directory.".format(self.dir))
+
+    def is_git_repo(self):
+        return git.is_repo(self.dir)
 
     def in_project(self):
         """
