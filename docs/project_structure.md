@@ -35,7 +35,7 @@ A project created with [`whisk create`](cli_reference.html#whisk-create) generat
     ├── setup.py              <- Makes project pip installable (pip install -e .) so src can be imported and
     │                           packaged for distribution.
     ├── src
-    │   └── [PROJECT NAME]    <- The top-level module for this project (import [PROJECT NAME]).
+    │   └── <project_name>   <- The top-level module for this project (import <project_name>).
     │       ├── artifacts     <- Saved artifacts required for generating predictions (like trained models, classifiers, etc.).
     │       ├── cli           <- Command Line Interface (CLI) commands for your project. Powered by https://click.palletsprojects.com/en/7.x/.
     │       ├── data          <- Scripts to download or generate data.

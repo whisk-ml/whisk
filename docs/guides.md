@@ -7,4 +7,5 @@ The guides below provide a step-by-step walkthrough of common tasks inside whisk
    :maxdepth: 2
 
    rename_project
+   rename_module
 ```

@@ -24,13 +24,13 @@ Your whisk project will contain a variety of different sources of code. You may 
 
 #### Training Data
 
-Raw training data should be version-controlled alongside the project code to ensure your experiments are reproducible. Place training data within the `data/` directory of your project. You can access the location of this directory via [`whisk.artifacts_dir`](autoapi/whisk/index.html#whisk.data_dir).
+Raw training data should be version-controlled alongside the project code to ensure your experiments are reproducible. Place training data within the `data/` directory of your project. You can access the location of this directory via `<project_name>.artifacts_dir`.
 
 #### Artifacts
 
 Once you land on a version of your model that performs well, you'll want to save the model to disk with a library like [pickle](https://docs.python.org/3/library/pickle.html).
 
-These should be stored in `src/<project_name>/artifacts/` and their location can be referenced throughout your project with [`whisk.artifact_dir`](autoapi/whisk/index.html#whisk.artifacts_dir). These artifacts are automatically included in your model's Python package.
+These should be stored in `src/<project_name>/artifacts/` and their location can be referenced throughout your project with `<project_name>.artifact_dir`. These artifacts are automatically included in your model's Python package.
 
 ### Outputs
 
@@ -55,9 +55,9 @@ You can run the web service locally with [`whisk app start`](cli_reference.html#
 To make project development easier, whisk contains a few helper functions. These functions contain commonly-used methods that speed up development of your model. For example:
 
 ```py
-import whisk
-whisk.data_dir # location of your stored data at `data/`.
-whisk.artifact_dir # location of the artifacts (ie trained models saved to disk) at `src/[PROJECT_NAME']/artifacts`
+import <project_name>
+<project_name>.data_dir # location of your stored data at `data/`.
+<project_name>.artifact_dir # location of the artifacts (ie trained models saved to disk) at `src/<project_name>/artifacts`
 ```
 
 This is not to be confused with the commands that sit alongside your packaged model code. That will be referenced with your project name. For example:

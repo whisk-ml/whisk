@@ -37,17 +37,23 @@ Commands that don't have a description are groups that have additional sub comma
 To get help on a specific command, append `--help` to the command. For example:
 
     $ whisk create --help
-    Usage: whisk create [OPTIONS] NAME
+    Usage: whisk create [OPTIONS] PROJECT_PATH
 
-      Creates a Whisk project in the NAME directory.
+    Creates a new whisk project with a default directory structure and
+    environment at the path you specify.
 
     Options:
-      --setup / --no-setup   Run setup script after creating directory structure.
-      --force / --no-force   Overwrite the contents of output directory if it
-                             exists.
-
-      -o, --output_dir TEXT  The parent directory that will contain the project.
-      --help                 Show this message and exit.
+      --setup / --no-setup     Run `whisk setup` to configure the project
+                               environment.  [default: True]
+      --force / --no-force     Overwrite the contents of output directory if it
+                               exists.  [default: False]
+      --module-name TEXT       The name of the module to use when calling `import`
+                               and when packaging.
+      --dependency TEXT        The whisk dependency entry in the project's
+                               requirements.txt file.
+      --install-requires TEXT  The whisk `install_requires` entry in the project's
+                               `setup.py` file
+      --help                   Show this message and exit.
 
 ### Logging
 
@@ -60,7 +66,7 @@ Add these global options immediately after the `whisk` keyword and prior to the 
 
 ### whisk create
 
-Create a new project by running `whisk create [PROJECT_NAME]` after [installing whisk](installation.html).
+Create a new project by running `whisk create <project_name>` after [installing whisk](installation.html).
 
 `whisk create` sets up the [directory structure](project_structure.html), and initializes the project environment ([see the setup API docs](autoapi/whisk/cli/commands/project/setup/index.html#whisk.cli.commands.project.setup.cli) for list of operations). This gives you everything needed to get started on your ML project.
 
