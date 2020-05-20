@@ -14,12 +14,16 @@ The following is required to run this project:
 
 ## Setup
 
-After cloning this repo and `cd {{cookiecutter.project_name}}`:
+After cloning this repo, perform the following steps to initialize the project:
 
-1. If you haven't yet installed whisk, run `pip install whisk`
-2. Run `whisk setup`. The install script creates a `venv`, installs the Python dependencies specified, and initializes DVC.
-3. Activate the venv: `source venv/bin/activate`
-4. If DVC is used, Download the latest data files: `dvc pull`.
+    cd {{cookiecutter.project_name}}
+    pip install whisk
+    whisk setup
+    source venv/bin/activate
+
+If DVC is used, download the latest data files: `dvc pull`.
+
+The steps above change to the project directory, install whisk, and setup the project environment.
 
 To learn more about whisk, here are a few helpful doc pages:
 * [A Quick Tour of whisk](https://whisk.readthedocs.io/en/latest/tour_of_whisk.html)
@@ -28,4 +32,4 @@ To learn more about whisk, here are a few helpful doc pages:
 
 --------
 
-<p><small>Project built with the <a target="_blank" href="https://github.com/whisk-ml/whisk">whisk ML project framework</a> based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+<p><small>Project built with the <a target="_blank" href="https://github.com/whisk-ml/whisk">whisk ML project framework</a>.

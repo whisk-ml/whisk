@@ -60,7 +60,7 @@ Add these global options immediately after the `whisk` keyword and prior to the 
 
 ### whisk create
 
-Create a new project by running `whisk create [PROJECT_NAME]` after [installing whisk](installation.html).
+Create a new project by running `whisk create <project_name>` after [installing whisk](installation.html).
 
 `whisk create` sets up the [directory structure](project_structure.html), and initializes the project environment ([see the setup API docs](autoapi/whisk/cli/commands/project/setup/index.html#whisk.cli.commands.project.setup.cli) for list of operations). This gives you everything needed to get started on your ML project.
 
