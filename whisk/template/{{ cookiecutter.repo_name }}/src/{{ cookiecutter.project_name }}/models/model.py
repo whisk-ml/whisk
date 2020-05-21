@@ -16,11 +16,11 @@ class Model:
 
         Tensorflow example:
 
-            self.model = load_model(whisk.artifacts_dir / "model.h5")
+            self.model = load_model(artifacts_dir / "model.h5")
 
         Pickle example:
 
-            with open(whisk.artifacts_dir / 'tokenizer.pickle', 'rb') as file:
+            with open(artifacts_dir / 'tokenizer.pickle', 'rb') as file:
                 self.tokenizer = pickle.load(file)
         """
         # REPLACE ME - add your loading logic

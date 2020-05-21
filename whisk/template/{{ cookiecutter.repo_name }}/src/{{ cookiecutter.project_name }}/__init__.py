@@ -7,8 +7,8 @@ whisk.project = Project.from_module(realpath(__file__))
 
 
 data_dir = whisk.project.data_dir
-"""Location of the training data directory as a pathlib.Path."""
+"""Location of the training data directory as a `pathlib.Path <https://docs.python.org/3.8/library/pathlib.html#basic-use/>`_."""
 
 
 artifacts_dir = whisk.project.artifacts_dir
-"""Location of the artifacts directory as a pathlib.Path."""
+"""Location of the artifacts directory as a `pathlib.Path <https://docs.python.org/3.8/library/pathlib.html#basic-use/>`_."""
