@@ -113,7 +113,7 @@ def exec_setup(project):
 
     init_direnv()
 
-    if not is_git_repo and git.has_unstaged_changes():
+    if not is_git_repo and project.has_unstaged_changes():
         exec("Adding files to git", "git add .")
         exec("Making initial Git commit",
              "git commit -m 'Initial project structure' --author=\"Whisk <whisk@whisk-ml.org>\" > /dev/null")

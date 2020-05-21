@@ -21,3 +21,8 @@ Changelog
 -----------------
 
 * Several refactoring updates (#27)
+
+0.1.32 (2020-05-20)
+-----------------
+
+* Removing venv/bin from dvc commands

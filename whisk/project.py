@@ -81,6 +81,9 @@ class Project:
     def is_git_repo(self):
         return git.is_repo(self.dir)
 
+    def has_unstaged_changes(self):
+        return git.has_unstaged_changes(self.dir)
+
     def in_project(self):
         """
         Returns True if the project's path is the root whisk
