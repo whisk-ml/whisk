@@ -1,10 +1,10 @@
-# whisk: The easy-bake ML project structure
+# whisk: The easy-bake data science project framework
 
 [![pypi](https://img.shields.io/pypi/v/whisk.svg)](https://pypi.python.org/pypi/whisk)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/whisk)](https://pypi.python.org/pypi/whisk)
 [![docs](https://readthedocs.org/projects/whisk/badge/?version=latest)](https://docs.whisk-ml.org/en/latest/)
 
-__whisk is an open-source ML project framework that makes collaboration, reproducibility, and deployment "just work".__ It combines a suite of lightweight tools with a logical and flexible project structure. Release your model to the world without a software engineer.
+__whisk is an open-source data science project framework that makes collaboration, reproducibility, and deployment "just work".__ It combines a suite of lightweight tools with a logical and flexible project structure. Release your model to the world without a software engineer.
 
 Whisk doesn't lock you into a particular ML framework or require you to learn yet another ML packaging API. Instead, it lets you leverage the large Python ecosystem by structuring your ML project in a [Pythonic-way](
 https://docs.python-guide.org/writing/structure/). Whisk does the structuring while you focus on the data science.
