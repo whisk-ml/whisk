@@ -1,8 +1,8 @@
 # whisk documentation home
 
-__whisk is an open-source ML project framework that makes collaboration, reproducibility, and deployment "just work".__ It combines a suite of lightweight tools with a logical and flexible project structure. Release your model to the world without a software engineer.
+__whisk is an open-source data science project framework that makes collaboration, reproducibility, and deployment "just work".__ It combines a data science-flavored Python project structure with a suite of lightweight tools. whisk lets you focus on data science but adds _just enough_ structure to make the project easy to share.
 
-Whisk doesn't lock you into a particular ML framework or require you to learn yet another ML packaging API. Instead, it lets you leverage the large Python ecosystem by structuring your ML project in a [Pythonic-way](
+Whisk doesn't lock you into a particular ML framework or require you to work in a defined way. Instead, it lets you leverage the large Python ecosystem by structuring your data science project in a [Pythonic-way](
 https://docs.python-guide.org/writing/structure/). Whisk does the structuring while you focus on the data science.
 
 Read more about our [beliefs](#beliefs).
@@ -33,7 +33,6 @@ The [whisk-ml](https://github.com/whisk-ml) GitHub org contains example whisk pr
 
 * [Text Classification with Keras and Tensorflow](https://github.com/whisk-ml/disaster_tweets) - A model that predicts which tweets are about real disasters and which ones are not. This project uses DVC to version control the data download and training stages.
 * [Image Classification with Tensorflow](https://github.com/whisk-ml/bike_image_classifier_tensorflow) - A classifier to determine if an image is of a Mountain bike or a Road bike.
-* Iris Classification with SKLearn (Coming soon)
 
 ## Documentation
 
@@ -58,15 +57,28 @@ The [whisk-ml](https://github.com/whisk-ml) GitHub org contains example whisk pr
 
 ## Beliefs
 
-Most ML framework approaches start with a shaky foundation. Rather than building off software engineering best practices for structuring your work, they encourage quick hacks that result in ML projects that are hard to debug, collaborate on, reproduce, and deploy. The beliefs below inspired us to create whisk:
+whisk is not for everyone. However, if the beliefs below resonate with you, it might make sense for your next DS project:
 
 * **A Reproducible, collaborative project is a solved problem for classical software** - We don't need to re-invent the wheel for machine learning projects. Instead, we need guide rails to help data scientists structure projects without forcing them to also become software engineers.
-* **A notebook is great for exploring, but not for production** - A data science notebook is where experimentation starts, but you can't create a reproducible, collaborative ML project with just a `*.ipynb` file.
+* **A notebook is great for exploring, but not for production** - A data science notebook is where experimentation starts, but you can't create a reproducible, collaborative project with just a `*.ipynb` file.
 * **Optimize for debugging** - 90% of writing software is fixing bugs. It should be fast and easy to debug your model logic locally. You should be able to search your error and find results, not sift through custom package source code or stop and restart Docker containers.
 * **Python already has a good package manager** - We don't need overly abstracted solutions to package a trained ML model. A properly structured ML project lets you distribute the model via `pip`, making it easy for _anyone_ to benefit from your work.
 * **Version control is a requirement** - You can't have a reproducible project if the code and training data isn't in version control.
 * **Docker is an unsteady foundation** - when we [explicitly declare and isolate dependencies](https://12factor.net/dependencies), we don't need to rely on the implicit existence of packages installed in a Docker container. Python has solid native tools for dependency management.
 * **Kubernetes is overkill** - very few web applications require the complexity of a container-orchestration system. Your deployed model is no different. Most models can run on boring, reliable technology.
+
+## whisk compared to Cookiecutter Data Science
+
+whisk takes the well-regarded structure created by [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science/) and sprinkles on some magic:
+
+* __Graceful upgrades__ - It's difficult, manual work upgrading a previously generated Cookiecutter DS project to the latest project structure. In fact, the most-commented open issue on the [Cookiecutter](https://github.com/cookiecutter/cookiecutter) package is [_How to update a project with changes from its cookiecutter?_
+](https://github.com/cookiecutter/cookiecutter/issues/784) and has been open since 2016. Unlike Cookiecutter projects, whisk projects include the [whisk package](https://pypi.org/project/whisk/) as a dependency. This shifts plumbing code (like [CLI commands](https://docs.whisk-ml.org/en/latest/cli_reference.html#) and [helper functions](https://docs.whisk-ml.org/en/latest/key_concepts.html#helper-functions)) out of the project, reducing the amount of code and providing a clearer upgrade path as new features are added to whisk. whisk follows the same dependency model used popular web framework libraries like Django and Flask.
+* __Environment configuration__ - Besides the directory structure, whisk also sets up a Python3 venv, initializes a Git repo for the project, creates an iPython kernel, [and more](https://docs.whisk-ml.org/en/latest/autoapi/whisk/setup/index.html#whisk.setup.setup). These are all standard activities I found myself doing over-and-over inside a CookieCutter DS-generated project.
+* __Packaging__ - The code within the `src/` directory of a whisk project can easily be packaged and distributed. This doesn't work with Cookiecutter DS.
+* __DVC__ - Cookiecutter DS includes some ad-hoc functions for handling data. whisk shifts these to [DVC](https://dvc.org), a dedicated library.
+* __Deployment__ - whisk adds a Flask app for model serving and a CLI command to deploy the web service to Heroku.
+
+With 3.5k GitHub stars, Cookiecutter DS is a popular, well-received open-source project. If you are deciding between Cookiecutter DS and whisk, we're already winning the war against sloppy data science.
 
 ```eval_rst
 Indices and tables
